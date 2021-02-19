@@ -328,7 +328,7 @@ if type ts >/dev/null 2>&1; then
     sed -i '/|ts/!s/>>/|ts >>/g' $defaultListFile
 fi
 
-##判断 自定义文件是否存在 是否存在
+##判断自定义定时文件是否存在
 if [ $CUSTOM_LIST_FILE ]; then
     echo "You have configured a custom list file: $CUSTOM_LIST_FILE, custom list merge type: $CUSTOM_LIST_MERGE_TYPE..."
     echo "您配置了自定义任务文件：$CUSTOM_LIST_FILE，自定义任务类型为：$CUSTOM_LIST_MERGE_TYPE..."
