@@ -15,9 +15,25 @@ git -C /scripts pull origin master --rebase
 echo "npm install 安装最新依赖"
 npm install --loglevel error --prefix /scripts
 
-echo "更新jds仓库文件"
-git -C /jds reset --hard
-git -C /jds pull origin master --rebase
+function initjds() {
+    mkdir /jds
+    cd /jds
+    git init
+    git remote add -f origin https://github.com/Aaron-lv/someDockerfile
+    git config core.sparsecheckout true
+    echo jd_scripts >> /jds/.git/info/sparse-checkout
+    git pull origin master --rebase
+}
+
+if [ ! -d "/jds/" ]; then
+    echo "未检查到jds仓库，初始化下载"
+    initjds
+else
+    echo "更新jds仓库文件"
+    git -C /jds reset --hard
+    git -C /jds pull origin master --rebase
+fi
+
 echo "替换执行文件"
 ls /jds/jd_scripts/ |grep -v shell_script_mod.sh |xargs -i cp -rf /jds/jd_scripts/{} /scripts/docker/
 echo "替换完成"
