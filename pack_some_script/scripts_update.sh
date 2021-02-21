@@ -124,8 +124,6 @@ else
         wget -O /xmly_speed/xmly_speed.py https://raw.githubusercontent.com/whyour/hundun/master/quanx/xmly_speed.py
         wget -O /xmly_speed/util.py https://raw.githubusercontent.com/whyour/hundun/master/quanx/util.py
     fi
-    echo "Replace some xmly scripts content to be compatible with env configuration ..."
-    echo "替换喜马拉雅脚本相关内容以兼容环境变量配置..."
     sed -i 's/BARK/BARK_PUSH/g' /xmly_speed/util.py
     sed -i 's/SCKEY/PUSH_KEY/g' /xmly_speed/util.py
     sed -i 's/if\ XMLY_ACCUMULATE_TIME.*$/if\ os.environ["XMLY_ACCUMULATE_TIME"]=="1":/g' /xmly_speed/xmly_speed.py
