@@ -54,12 +54,12 @@ else
     echo "未配置随即延迟对应的环境变量，故不设置延迟任务..."
 fi
 
-echo "第5步判断是否配置自定义shell执行脚本..."
+echo "第5步判断是否配置自定义shell脚本..."
 if [ 0"$CUSTOM_SHELL_FILE" = "0" ]; then
     echo "未配置自定shell脚本文件，跳过执行。"
 else
     if expr "$CUSTOM_SHELL_FILE" : 'http.*' &>/dev/null; then
-        echo "自定义shell脚本为远程脚本，开始下在自定义远程脚本。"
+        echo "自定义shell脚本为远程脚本，开始下载自定义远程脚本..."
         wget -O /scripts/docker/shell_script_mod.sh $CUSTOM_SHELL_FILE
         echo "下载完成，开始执行..."
         echo "" >>$mergedListFile

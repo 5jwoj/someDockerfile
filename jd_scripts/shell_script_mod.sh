@@ -9,20 +9,20 @@ if [ $(grep -c "docker_entrypoint.sh" /scripts/docker/merged_list_file.sh) -eq '
 fi
 
 if [ ! -e "/scripts/joy_reward.js" ]; then
-    echo "未挂载joy_reward.js，跳过添加定时任务"
+    echo "未挂载joy_reward.js，跳过添加定时任务..."
 else
-    echo "已挂载joy_reward.js，添加定时任务"
+    echo "已挂载joy_reward.js，添加定时任务..."
     echo "# 宠汪汪积分兑换奖品" >> /scripts/docker/merged_list_file.sh
     echo "0 0-16/8 * * * node /scripts/joy_reward.js >> /scripts/logs/jd_joy_reward.log 2>&1" >> /scripts/docker/merged_list_file.sh
 fi
 
 ## 克隆i-chenzhe仓库
 if [ ! -d "/i-chenzhe/" ]; then
-    echo "未检查到i-chenzhe仓库脚本，初始化下载相关脚本"
+    echo "未检查到i-chenzhe仓库脚本，初始化下载相关脚本..."
     git clone https://github.com/i-chenzhe/qx /i-chenzhe
     cp -f /i-chenzhe/jd_*.js /scripts
 else
-    echo "更新i-chenzhe脚本相关文件"
+    echo "更新i-chenzhe脚本相关文件..."
     git -C /i-chenzhe reset --hard
     git -C /i-chenzhe pull --rebase
     cp -f /i-chenzhe/jd_*.js /scripts

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 
-echo "整理各个日志文件里面的互助码相关信息......"
+echo "整理各个日志文件里面的互助码相关信息..."
 echo "==========================================================================="
 logdDir="/scripts/logs"
 sharecodeFile="${logdDir}/sharecode.log"
@@ -43,7 +43,7 @@ echo "互助码排序和去重完成"
 echo "==========================================================================="
 echo "整理完成，具体结果请查看${sharecodeFile}文件"
 
-echo "处理jd_crazy_joy_coin任务......"
+echo "处理jd_crazy_joy_coin任务..."
 if [ ! $CRZAY_JOY_COIN_ENABLE ]; then
    echo "默认启用jd_crazy_joy_coin杀掉jd_crazy_joy_coin任务，并重启"
    eval $(ps -ef | grep "jd_crazy" | awk '{print "kill "$1}')
