@@ -24,6 +24,9 @@ function initupdateTeam() {
     cd /updateTeam
     git init
     git remote add -f origin $updateTeam_URL
+    git config --global user.email "$email"
+    git config --global user.name "$name"
+    echo -e $KEY > /root/.ssh/id_rsa
     git pull origin master --rebase
 }
 
@@ -31,9 +34,6 @@ if [ ! -d "/updateTeam/" ]; then
     echo "未检查到updateTeam仓库，初始化下载..."
     initupdateTeam
 else
-    git config --global user.email "$email"
-    git config --global user.name "$name"
-    echo -e $KEY > /root/.ssh/id_rsa
     cd /updateTeam
     echo "更新updateTeam仓库文件..."
     git reset --hard
