@@ -19,8 +19,7 @@ function initupdateTeam() {
     mkdir /updateTeam
     cd /updateTeam
     git init
-    git remote set-url origin $updateTeam_URL
-    git reset --hard
+    git remote add -f origin $updateTeam_URL
     git pull origin master --rebase
 }
 
@@ -35,7 +34,7 @@ else
     echo "提交updateTeam仓库文件..."
     git add -A
     git commit -m "更新JSON文件"
-    git push
+    git push origin master
 fi
 
 echo "------------------------------------------------执行定时任务任务shell脚本------------------------------------------------"
