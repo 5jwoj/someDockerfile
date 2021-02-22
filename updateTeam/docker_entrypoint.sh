@@ -28,11 +28,14 @@ if [ ! -d "/updateTeam/" ]; then
     echo "未检查到updateTeam仓库，初始化下载..."
     initupdateTeam
 else
+    cd /updateTeam
     echo "更新updateTeam仓库文件..."
-    git -C /updateTeam reset --hard
-    git -C /updateTeam pull origin master --rebase
+    git reset --hard
+    git pull origin master --rebase
     echo "提交updateTeam仓库文件..."
-    git -C /updateTeam push origin master
+    git add -A
+    git commit -m "更新JSON文件"
+    git push
 fi
 
 echo "------------------------------------------------执行定时任务任务shell脚本------------------------------------------------"
