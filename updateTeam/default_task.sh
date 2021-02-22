@@ -41,6 +41,7 @@ sh -x /jds/updateTeam/proc_file.sh
 echo "第4步判断是否配置了默认脚本更新任务..."
 if [ $(grep -c "docker_entrypoint.sh" $mergedListFile) -eq '0' ]; then
     echo "合并后的定时任务文件，未包含必须的默认定时任务，增加默认定时任务..."
+    echo "" >>$mergedListFile
     echo "# 默认定时任务" >>$mergedListFile
     echo "0 */1 * * * docker_entrypoint.sh >> /scripts/logs/default_task.log 2>&1" >>$mergedListFile
 else
