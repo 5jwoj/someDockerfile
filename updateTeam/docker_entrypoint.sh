@@ -20,6 +20,7 @@ function initupdateTeam() {
     cd /updateTeam
     git init
     git remote set-url origin $updateTeam_URL
+    git reset --hard
     git pull origin master --rebase
 }
 
