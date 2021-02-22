@@ -29,9 +29,6 @@ else
     cp -f /i-chenzhe/jd_*.js /scripts
 fi
 
-## 华硕-爱奇艺
-echo "# 华硕-爱奇艺" >> /scripts/docker/merged_list_file.sh
-echo "1 0 22-28 2 * node /scripts/jd_asus_iqiyi.js >> /scripts/logs/jd_asus_iqiyi.log 2>&1" >> /scripts/docker/merged_list_file.sh
 ## 百变大咖秀
 echo "# 百变大咖秀" >> /scripts/docker/merged_list_file.sh
 echo "10 10 * * 1-3 node /scripts/jd_entertainment.js >> /scripts/logs/jd_entertainment.log 2>&1" >> /scripts/docker/merged_list_file.sh
