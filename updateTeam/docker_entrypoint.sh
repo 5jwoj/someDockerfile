@@ -30,6 +30,7 @@ else
     echo "更新updateTeam仓库文件..."
     git -C /updateTeam reset --hard
     git -C /updateTeam pull origin master --rebase
+    echo "提交updateTeam仓库文件..."
     git -C /updateTeam push origin master
 fi
 

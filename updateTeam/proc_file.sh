@@ -1,7 +1,6 @@
 #!/bin/sh
 set -e
 
-
 ##定义合并定时任务相关文件路径变量
 defaultListFile="/jds/updateTeam/$DEFAULT_LIST_FILE"
 customListFile="/jds/updateTeam/$CUSTOM_LIST_FILE"
