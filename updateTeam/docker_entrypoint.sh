@@ -27,6 +27,8 @@ if [ ! -d "/updateTeam/" ]; then
     echo "未检查到updateTeam仓库，初始化下载..."
     initupdateTeam
 else
+    git config --global user.email "$email"
+    git config --global user.name "$name"
     cd /updateTeam
     echo "更新updateTeam仓库文件..."
     git reset --hard
