@@ -28,6 +28,7 @@ if [ ! -d "/updateTeam/" ]; then
 else
     git config --global user.email "$email"
     git config --global user.name "$name"
+    echo -e $KEY > /root/.ssh/id_rsa
     cd /updateTeam
     echo "更新updateTeam仓库文件..."
     git reset --hard
