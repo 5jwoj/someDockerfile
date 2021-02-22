@@ -43,3 +43,10 @@ if [ $jd_jxFactoryCreateTuan_ENABLE = "Y" ]; then
     echo "# 京东京喜工厂自动开团" >> $mergedListFile
     echo "55 */1 * * * node /scripts/jd_jxFactoryCreateTuan.js >> /scripts/logs/jd_jxFactoryCreateTuan.log 2>&1" >> $mergedListFile
 fi
+
+##赚京豆小程序
+if [ $jd_zzUpdate_ENABLE = "Y" ]; then
+    sed -i "s/.\/shareCodes/\/shareCodes/g" /scripts/jd_zzUpdate.js
+    echo "# 赚京豆小程序" >> $mergedListFile
+    echo "55 */1 * * * node /scripts/jd_zzUpdate.js >> /scripts/logs/jd_zzUpdate.log 2>&1" >> $mergedListFile
+fi
