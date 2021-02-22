@@ -63,13 +63,6 @@ else
    fi
 fi
 
-if [ $JXTUAN_ENABLE = "Y" ]; then
-   wget -O /scripts/jd_dreamFactory_tuanid.js https://raw.githubusercontent.com/FKPYW/SomeScripts/master/JXTuan/scripts/jd_dreamFactory_tuanid.js
-   sed -i 's/"jd_updateFactoryTuanId.json/"\/scripts\/logs\/jd_updateFactoryTuanId.json/g' /scripts/jd_dreamFactory_tuanid.js
-   echo "# 京喜工厂开团" >> /scripts/docker/merged_list_file.sh
-   echo "59 */1 * * * node /scripts/jd_dreamFactory_tuanid.js |ts >> /scripts/logs/jd_dreamFactory_tuanid.log 2>&1" >> /scripts/docker/merged_list_file.sh
-fi
-
 
 ## 修改闪购盲盒定时
 sed -i "s/27 8 \* \* \* node \/scripts\/jd_sgmh.js/27 8,23 \* \* \* node \/scripts\/jd_sgmh.js/g" /scripts/docker/merged_list_file.sh
@@ -82,6 +75,6 @@ sed -i "s/27 7 \* \* \* sleep \$((RANDOM % \$RANDOM_DELAY_MAX)); node \/scripts\
 sed -ie "32,33s/^[^\]*/  \`aUNmM6_nOP4j-W4@eU9Yau3kZ_4g-DiByHEQ0A@eU9YaOvnM_4k9WrcnnAT1Q@eU9Yar-3M_8v9WndniAQhA@f0JyJuW7bvQ@IhM0bu-0b_kv8W6E@eU9YKpnxOLhYtQSygTJQ@-oaWtXEHOrT_bNMMVso@eU9YG7XaD4lXsR2krgpG\`,/g" /scripts/jd_cash.js
 
 ## 参团
-sed -i "s/https:\/\/gitee.com\/shylocks\/updateTeam\/raw\/main\/jd_updateFactoryTuanId.json/https:\/\/raw.githubusercontent.com\/Aaron-lv\/JavaScript\/master\/jd_updateFactoryTuanId.json/g" /scripts/jd_dreamFactory.js
-sed -i "s/https:\/\/raw.githubusercontent.com\/LXK9301\/updateTeam\/master\/jd_updateFactoryTuanId.json/https:\/\/raw.githubusercontent.com\/Aaron-lv\/JavaScript\/master\/jd_updateFactoryTuanId.json/g" /scripts/jd_dreamFactory.js
-sed -i "s/https:\/\/gitee.com\/lxk0301\/updateTeam\/raw\/master\/shareCodes\/jd_updateFactoryTuanId.json/https:\/\/raw.githubusercontent.com\/Aaron-lv\/JavaScript\/master\/jd_updateFactoryTuanId.json/g" /scripts/jd_dreamFactory.js
+sed -i "s/https:\/\/gitee.com\/shylocks\/updateTeam\/raw\/main\/jd_updateFactoryTuanId.json/https:\/\/raw.githubusercontent.com\/Aaron-lv\/updateTeam\/master\/shareCodes\/jd_updateFactoryTuanId.json/g" /scripts/jd_dreamFactory.js
+sed -i "s/https:\/\/raw.githubusercontent.com\/LXK9301\/updateTeam\/master\/jd_updateFactoryTuanId.json/https:\/\/raw.githubusercontent.com\/Aaron-lv\/updateTeam\/master\/shareCodes\/jd_updateFactoryTuanId.json/g" /scripts/jd_dreamFactory.js
+sed -i "s/https:\/\/gitee.com\/lxk0301\/updateTeam\/raw\/master\/shareCodes\/jd_updateFactoryTuanId.json/https:\/\/raw.githubusercontent.com\/Aaron-lv\/updateTeam\/master\/shareCodes\/jd_updateFactoryTuanId.json/g" /scripts/jd_dreamFactory.js
