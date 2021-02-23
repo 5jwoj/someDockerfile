@@ -71,21 +71,6 @@ else
     npm install --loglevel error --prefix /ZIYE_JavaScript
 fi
 
-##克隆adwktt仓库
-if [ ! -d "/adwktt/" ]; then
-    echo "未检查到adwktt仓库脚本，初始化下载相关脚本"
-    git clone https://github.com/adwktt/adwktt /adwktt
-    wget -O /adwktt/package.json https://raw.githubusercontent.com/ziye66666/JavaScript/main/package.json
-    cd /adwktt
-    npm install
-else
-    echo "更新adwktt脚本相关文件"
-    git -C /adwktt reset --hard
-    git -C /adwktt pull origin master --rebase
-    wget -O /adwktt/package.json https://raw.githubusercontent.com/ziye66666/JavaScript/main/package.json
-    npm install --loglevel error --prefix /adwktt
-fi
-
 ##判断小米运动相关变量存在，才会更新相关任务脚本
 if [ 0"$XMYD_USER" = "0" ]; then
     echo "没有配置小米运动，相关环境变量参数，跳过配置定时任务"
@@ -135,7 +120,7 @@ else
     sed -i '/message += f"【连续签到】.*$/d' /xmly_speed/xmly_speed.py
     sed -i '/message += f"\\n".*$/d' /xmly_speed/xmly_speed.py
     if [ 0"$XMLY_CRON" = "0" ]; then
-        XMLY_CRON="*/30 */1 * * *"
+        XMLY_CRON="*/30 * * * *"
     fi
     echo "#喜马拉雅极速版">>$mergedListFile
     echo "$XMLY_CRON python3 /xmly_speed/xmly_speed.py >> /logs/xmly_speed.log 2>&1" >>$mergedListFile
@@ -155,7 +140,7 @@ else
         npm install --loglevel error --prefix /qqread
     fi
     if [ 0"$QQREAD_CRON" = "0" ]; then
-        QQREAD_CRON="*/20 */1 * * *"
+        QQREAD_CRON="*/20 * * * *"
     fi
     echo "#企鹅读书小程序" >>$mergedListFile
     echo "$QQREAD_CRON sleep \$((RANDOM % 180)) && node /qqread/Task/qqreadnode.js >> /logs/qqreadnode.log 2>&1" >>$mergedListFile
@@ -177,47 +162,10 @@ else
         npm install --loglevel error --prefix /hotsoon
     fi
     if [ 0"$HOTSOON_CRON" = "0" ]; then
-        HOTSOON_CRON="*/5 */1 * * *"
+        HOTSOON_CRON="*/5 * * * *"
     fi
     echo "#火山极速版" >>$mergedListFile
     echo "$HOTSOON_CRON node /hotsoon/Scripts/hotsoon.js >> /logs/hotsoon.log 2>&1" >>$mergedListFile
-fi
-
-##判断步步宝相关变量存在，才会配置定时任务
-if [ 0"$BBB_COOKIE" = "0" ]; then
-    echo "没有配置步步宝Cookie，相关环境变量参数，跳过配置定时任务"
-else
-    cp -f /adwktt/BBB.js /adwktt/BBB_BACKUP.js
-    sed -i "s/let CookieVal = \$.getdata('bbb_ck')/let CookieVal = process.env.BBB_COOKIE.split();/g" /adwktt/BBB.js
-    if [ 0"$BBB_CRON" = "0" ]; then
-        BBB_CRON="0 8-23/2 * * *"
-    fi
-    echo "#步步宝" >>$mergedListFile
-    echo "$BBB_CRON node /adwktt/BBB.js >> /logs/BBB.log 2>&1" >>$mergedListFile
-fi
-
-if [ 0"$BBB_COOKIE2" = "0" ]; then
-    echo "没有配置步步宝Cookie2，相关环境变量参数，跳过配置定时任务"
-else
-    cp -f /adwktt/BBB_BACKUP.js /adwktt/BBB2.js
-    sed -i "s/let CookieVal = \$.getdata('bbb_ck')/let CookieVal = process.env.BBB_COOKIE2.split();/g" /adwktt/BBB2.js
-    if [ 0"$BBB_CRON" = "0" ]; then
-        BBB_CRON="0 8-23/2 * * *"
-    fi
-    echo "#步步宝2" >>$mergedListFile
-    echo "$BBB_CRON node /adwktt/BBB2.js >> /logs/BBB2.log 2>&1" >>$mergedListFile
-fi
-
-if [ 0"$BBB_COOKIE3" = "0" ]; then
-    echo "没有配置步步宝Cookie3，相关环境变量参数，跳过配置定时任务"
-else
-    cp -f /adwktt/BBB_BACKUP.js /adwktt/BBB3.js
-    sed -i "s/let CookieVal = \$.getdata('bbb_ck')/let CookieVal = process.env.BBB_COOKIE3.split();/g" /adwktt/BBB3.js
-    if [ 0"$BBB_CRON" = "0" ]; then
-        BBB_CRON="0 8-23/2 * * *"
-    fi
-    echo "#步步宝3" >>$mergedListFile
-    echo "$BBB_CRON node /adwktt/BBB3.js >> /logs/BBB3.log 2>&1" >>$mergedListFile
 fi
 
 ##判断汽车之家极速版相关变量存在，才会更新相关任务脚本
@@ -234,7 +182,7 @@ else
     sed -i "s/CASH = process.env.QCZJ_CASH || 0;/CASH = process.env.QCZJ_CASH || 0;\n CASHTYPE = process.env.QCZJ_CASHTYPE || 3;/g" /ZIYE_JavaScript/Task/qczjspeed.js
     sed -i "s/cashtype=3/cashtype=\${CASHTYPE}/g" /ZIYE_JavaScript/Task/qczjspeed.js
     if [ 0"$QCZJ_CRON" = "0" ]; then
-        QCZJ_CRON="*/20 */1 * * *"
+        QCZJ_CRON="*/20 * * * *"
     fi
     echo "#汽车之家极速版" >>$mergedListFile
     echo "$QCZJ_CRON node /ZIYE_JavaScript/Task/qczjspeed.js >> /logs/qczjspeed.log 2>&1" >>$mergedListFile
@@ -289,4 +237,15 @@ else
     fi
     echo "#芝嫲视频" >>$mergedListFile
     echo "$ZM_CRON node /ZIYE_JavaScript/Task/zhima.js >> /logs/zhima.log 2>&1" >>$mergedListFile
+fi
+
+##判断步步宝相关变量存在，才会更新相关任务脚本
+if [ 0"$BBB_bububaoTOKEN" = "0" ]; then
+    echo "没有配置步步宝，相关环境变量参数，跳过配置定时任务"
+else
+    if [ 0"$BBB_CRON" = "0" ]; then
+        BBB_CRON="*/30 * * * *"
+    fi
+    echo "#步步宝" >>$mergedListFile
+    echo "$BBB_CRON node /ZIYE_JavaScript/Task/bububao.js >> /logs/bububao.log 2>&1" >>$mergedListFile
 fi
