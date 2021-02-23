@@ -17,7 +17,7 @@ function initupdateTeam() {
 }
 
 if [ 0"$updateTeam_URL" = "0" ]; then
-    echo "没有配置远程仓库地址，跳过初始化"
+    echo "没有配置远程仓库地址，跳过初始化。"
 else
     if [ ! -d "/updateTeam/" ]; then
         echo "未检查到updateTeam仓库，初始化下载..."
@@ -27,25 +27,26 @@ else
         echo "更新updateTeam仓库文件..."
         git reset --hard
         git pull origin master --rebase
-        cp -rf /shareCodes /updateTeam/
-        echo "提交updateTeam仓库文件..."
-        git add -A
-        git commit -m "更新JSON文件"
-        git push origin master
     fi
 fi
-
 
 ##京东京喜工厂自动开团
 if [ $jd_jxFactoryCreateTuan_ENABLE = "Y" ]; then
     sed -i "s/.\/shareCodes/\/shareCodes/g" /scripts/jd_jxFactoryCreateTuan.js
-    echo "# 京东京喜工厂自动开团" >> $mergedListFile
-    echo "55 */1 * * * node /scripts/jd_jxFactoryCreateTuan.js >> /scripts/logs/jd_jxFactoryCreateTuan.log 2>&1" >> $mergedListFile
+    sed -i "s/TvjO5k4gaVqVHMRJIogd_g==/RtWNiMlXQlq9AQX_6IOu-A==/g" /scripts/jd_jxFactoryCreateTuan.js
+    echo "执行京东京喜工厂自动开团..."
+    node /scripts/jd_jxFactoryCreateTuan.js >> /scripts/logs/jd_jxFactoryCreateTuan.log 2>&1
 fi
 
 ##赚京豆小程序
 if [ $jd_zzUpdate_ENABLE = "Y" ]; then
     sed -i "s/.\/shareCodes/\/shareCodes/g" /scripts/jd_zzUpdate.js
-    echo "# 赚京豆小程序" >> $mergedListFile
-    echo "55 */1 * * * node /scripts/jd_zzUpdate.js >> /scripts/logs/jd_zzUpdate.log 2>&1" >> $mergedListFile
+    echo "执行赚京豆小程序..."
+    node /scripts/jd_zzUpdate.js >> /scripts/logs/jd_zzUpdate.log 2>&1
 fi
+
+cp -rf /shareCodes /updateTeam/
+echo "提交updateTeam仓库文件..."
+git add -A
+git commit -m "更新JSON文件"
+git push origin master
