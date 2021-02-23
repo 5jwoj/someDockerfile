@@ -1,12 +1,10 @@
 #!/bin/sh
 set -e
 
-
 ##定义合并定时任务相关文件路径变量
-defaultListFile="/pss/$DEFAULT_LIST_FILE"
-customListFile="/pss/$CUSTOM_LIST_FILE"
-mergedListFile="/pss/merged_list_file.sh"
-
+defaultListFile="/pss/pack_some_script/$DEFAULT_LIST_FILE"
+customListFile="/pss/pack_some_script/$CUSTOM_LIST_FILE"
+mergedListFile="/pss/pack_some_script/merged_list_file.sh"
 
 ##喜马拉雅极速版
 function initxmly() {
@@ -87,7 +85,6 @@ else
     wget -O /adwktt/package.json https://raw.githubusercontent.com/ziye66666/JavaScript/main/package.json
     npm install --loglevel error --prefix /adwktt
 fi
-
 
 ##判断小米运动相关变量存在，才会更新相关任务脚本
 if [ 0"$XMYD_USER" = "0" ]; then
@@ -293,71 +290,3 @@ else
     echo "#芝嫲视频" >>$defaultListFile
     echo "$ZM_CRON node /ZIYE_JavaScript/Task/zhima.js >> /logs/zhima.log 2>&1" >>$defaultListFile
 fi
-
-
-##判断是否配置自定义shell脚本
-if [ 0"$CUSTOM_SHELL_FILE" = "0" ]; then
-    echo "未配置自定shell脚本文件，跳过执行。"
-else
-    if expr "$CUSTOM_SHELL_FILE" : 'http.*' &>/dev/null; then
-        echo "自定义shell脚本为远程脚本，开始下载自定义远程脚本..."
-        wget -O /pss/pss_shell_mod.sh $CUSTOM_SHELL_FILE
-        echo "下载完成，开始执行..."
-        sh -x /pss/pss_shell_mod.sh
-        echo "自定义远程shell脚本下载并执行结束。"
-    else
-        if [ ! -f $CUSTOM_SHELL_FILE ]; then
-            echo "自定义shell脚本为docker挂载脚本文件，但是指定挂载文件不存在，跳过执行。"
-        else
-            echo "docker挂载的自定shell脚本，开始执行..."
-            sh -x $CUSTOM_SHELL_FILE
-            echo "docker挂载的自定shell脚本，执行结束。"
-        fi
-    fi
-fi
-
-##追加|ts 任务日志时间戳
-if type ts >/dev/null 2>&1; then
-    echo '系统已安装moreutils工具包，默认定时任务增加｜ts 输出'
-    ##复制一个新文件来追加|ts，防止git pull的时候冲突
-    cp -f $defaultListFile /pss/default_list.sh
-    defaultListFile="/pss/default_list.sh"
-    sed -i '/|ts/!s/>>/|ts >>/g' $defaultListFile
-fi
-
-##判断自定义定时文件是否存在
-if [ $CUSTOM_LIST_FILE ]; then
-    echo "您配置了自定义任务文件：$CUSTOM_LIST_FILE，自定义任务类型为：$CUSTOM_LIST_MERGE_TYPE..."
-    if [ -f "$customListFile" ]; then
-        if [ $CUSTOM_LIST_MERGE_TYPE == "append" ]; then
-            echo "合并默认定时任务文件：$DEFAULT_LIST_FILE 和 自定义定时任务文件：$CUSTOM_LIST_FILE"
-            cat $defaultListFile >$mergedListFile
-            echo -e "" >>$mergedListFile
-            cat $customListFile >>$mergedListFile
-        elif [ $CUSTOM_LIST_MERGE_TYPE == "overwrite" ]; then
-            cat $customListFile >$mergedListFile
-            echo "合并自定义任务文件：$CUSTOM_LIST_FILE"
-            touch "$customListFile"
-        else
-            echo "配置配置了错误的自定义定时任务类型：$CUSTOM_LIST_MERGE_TYPE，自定义任务类型为只能为append或者overwrite..."
-            cat $defaultListFile >$mergedListFile
-        fi
-    else
-        echo "自定义任务文件：$CUSTOM_LIST_FILE 未找到，使用默认配置$DEFAULT_LIST_FILE..."
-        cat $defaultListFile >$mergedListFile
-    fi
-else
-    echo "当前使用的为默认定时任务文件 $DEFAULT_LIST_FILE ..."
-    cat $defaultListFile >$mergedListFile
-fi
-
-##判断最后要加载的定时任务是否包含默认定时任务，不包含的话就加进去
-if [ $(grep -c "default_task.sh" $mergedListFile) -eq '0' ]; then
-    echo "合并后的定时任务文件，未包含必须的默认定时任务，增加默认定时任务..."
-    echo -e >>$mergedListFile
-    echo "#默认定时任务" >>$mergedListFile
-    echo "52 */1 * * * sh /pss/default_task.sh |ts >> /logs/default_task.log 2>&1" >>$mergedListFile
-fi
-
-echo "加载最新的定时任务文件..."
-crontab $mergedListFile

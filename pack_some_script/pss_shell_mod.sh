@@ -15,7 +15,6 @@ function initBaidu() {
     npm install
 }
 
-
 ##判断百度极速版相关变量存在，才会更新相关任务脚本
 if [ 0"$BAIDU_COOKIE" = "0" ]; then
     echo "没有配置百度极速版，相关环境变量参数，跳过下载配置定时任务"
