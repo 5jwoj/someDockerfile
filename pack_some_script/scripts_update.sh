@@ -19,8 +19,6 @@ function initxmly() {
     git pull origin master --rebase
     pip3 install --upgrade pip
     pip3 install -r requirements.txt
-    wget -O /xmly_speed/xmly_speed.py https://raw.githubusercontent.com/whyour/hundun/master/quanx/xmly_speed.py
-    wget -O /xmly_speed/util.py https://raw.githubusercontent.com/whyour/hundun/master/quanx/util.py
 }
 
 ##企鹅读书小程序
@@ -48,13 +46,11 @@ function inithotsoon() {
     echo Scripts/hotsoon.js >>/hotsoon/.git/info/sparse-checkout
     git pull origin master --rebase
     wget -O /hotsoon/package.json https://raw.githubusercontent.com/ziye66666/JavaScript/main/package.json
-    wget -O /hotsoon/Scripts/sendNotify.js https://raw.githubusercontent.com/ZhiYi-N/script/master/sendNotify.js
     npm install
 }
 
-##克隆ZIYE_JavaScript仓库
-if [ ! -d "/ZIYE_JavaScript/" ]; then
-    echo "未检查到ZIYE_JavaScript仓库脚本，初始化下载相关脚本"
+##ZIYE_JavaScript
+function initziye {
     mkdir /ZIYE_JavaScript
     cd /ZIYE_JavaScript
     git init
@@ -64,12 +60,7 @@ if [ ! -d "/ZIYE_JavaScript/" ]; then
     echo Task >>/ZIYE_JavaScript/.git/info/sparse-checkout
     git pull origin main --rebase
     npm install
-else
-    echo "更新ZIYE_JavaScript脚本相关文件"
-    git -C /ZIYE_JavaScript reset --hard
-    git -C /ZIYE_JavaScript pull origin main --rebase
-    npm install --loglevel error --prefix /ZIYE_JavaScript
-fi
+}
 
 ##判断小米运动相关变量存在，才会更新相关任务脚本
 if [ 0"$XMYD_USER" = "0" ]; then
@@ -103,9 +94,9 @@ else
         git -C /xmly_speed pull origin master --rebase
         cd /xmly_speed
         pip3 install -r requirements.txt
-        wget -O /xmly_speed/xmly_speed.py https://raw.githubusercontent.com/whyour/hundun/master/quanx/xmly_speed.py
-        wget -O /xmly_speed/util.py https://raw.githubusercontent.com/whyour/hundun/master/quanx/util.py
     fi
+    wget -O /xmly_speed/util.py https://raw.githubusercontent.com/whyour/hundun/master/quanx/util.py
+    wget -O /xmly_speed/xmly_speed.py https://raw.githubusercontent.com/whyour/hundun/master/quanx/xmly_speed.py
     sed -i 's/BARK/BARK_PUSH/g' /xmly_speed/util.py
     sed -i 's/SCKEY/PUSH_KEY/g' /xmly_speed/util.py
     sed -i 's/if\ XMLY_ACCUMULATE_TIME.*$/if\ os.environ["XMLY_ACCUMULATE_TIME"]=="1":/g' /xmly_speed/xmly_speed.py
@@ -158,14 +149,29 @@ else
         git -C /hotsoon reset --hard
         git -C /hotsoon pull origin master --rebase
         wget -O /hotsoon/package.json https://raw.githubusercontent.com/ziye66666/JavaScript/main/package.json
-        wget -O /hotsoon/Scripts/sendNotify.js https://raw.githubusercontent.com/ZhiYi-N/script/master/sendNotify.js
         npm install --loglevel error --prefix /hotsoon
     fi
+    wget -O /hotsoon/Scripts/sendNotify.js https://raw.githubusercontent.com/ZhiYi-N/script/master/sendNotify.js
     if [ 0"$HOTSOON_CRON" = "0" ]; then
         HOTSOON_CRON="*/5 * * * *"
     fi
     echo "#火山极速版" >>$mergedListFile
     echo "$HOTSOON_CRON node /hotsoon/Scripts/hotsoon.js >> /logs/hotsoon.log 2>&1" >>$mergedListFile
+fi
+
+##判断ZIYE_JavaScript相关变量存在，才会更新相关任务脚本
+if [ 0"$COOKIES_SPLIT" = "0" ]; then
+    echo "没有配置ZIYE_JavaScript，相关环境变量参数，跳过配置定时任务"
+else
+    if [ ! -d "/ZIYE_JavaScript/" ]; then
+        echo "未检查到ZIYE_JavaScript仓库脚本，初始化下载相关脚本"
+        initziye
+    else
+        echo "更新ZIYE_JavaScript脚本相关文件"
+        git -C /ZIYE_JavaScript reset --hard
+        git -C /ZIYE_JavaScript pull origin main --rebase
+        npm install --loglevel error --prefix /ZIYE_JavaScript
+    fi
 fi
 
 ##判断汽车之家极速版相关变量存在，才会更新相关任务脚本
