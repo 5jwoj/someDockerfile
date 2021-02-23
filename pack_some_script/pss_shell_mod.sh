@@ -1,6 +1,11 @@
 #!/bin/sh
 set -e
 
+##定义合并定时任务相关文件路径变量
+defaultListFile="/pss/pack_some_script/$DEFAULT_LIST_FILE"
+customListFile="/pss/pack_some_script/$CUSTOM_LIST_FILE"
+mergedListFile="/pss/pack_some_script/merged_list_file.sh"
+
 ##百度极速版
 function initBaidu() {
     mkdir /baidu_speed
@@ -31,6 +36,6 @@ else
     if [ 0"$BAIDU_CRON" = "0" ]; then
         BAIDU_CRON="*/20 6-22/1 * * *"
     fi
-    echo "#百度极速版" >>/pss/$DEFAULT_LIST_FILE
-    echo "$BAIDU_CRON node /baidu_speed/Task/baidu_speed.js >> /logs/baidu_speed.log 2>&1" >>/pss/$DEFAULT_LIST_FILE
+    echo "#百度极速版" >>$mergedListFile
+    echo "$BAIDU_CRON node /baidu_speed/Task/baidu_speed.js >> /logs/baidu_speed.log 2>&1" >>$mergedListFile
 fi

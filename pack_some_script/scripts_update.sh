@@ -101,8 +101,8 @@ else
     if [ 0"$XM_CRON" = "0" ]; then
         XM_CRON="10 22 * * *"
     fi
-    echo "#小米运动刷步数" >>$defaultListFile
-    echo "$XM_CRON python3 /xmSports/main.py >> /logs/xmSports.log 2>&1" >>$defaultListFile
+    echo "#小米运动刷步数" >>$mergedListFile
+    echo "$XM_CRON python3 /xmSports/main.py >> /logs/xmSports.log 2>&1" >>$mergedListFile
 fi
 
 ##判断喜马拉雅极速版相关变量存在，才会更新相关任务脚本
@@ -137,8 +137,8 @@ else
     if [ 0"$XMLY_CRON" = "0" ]; then
         XMLY_CRON="*/30 */1 * * *"
     fi
-    echo "#喜马拉雅极速版">>$defaultListFile
-    echo "$XMLY_CRON python3 /xmly_speed/xmly_speed.py >> /logs/xmly_speed.log 2>&1" >>$defaultListFile
+    echo "#喜马拉雅极速版">>$mergedListFile
+    echo "$XMLY_CRON python3 /xmly_speed/xmly_speed.py >> /logs/xmly_speed.log 2>&1" >>$mergedListFile
 fi
 
 ##判断企鹅读书小程序相关变量存在，才会更新相关任务脚本
@@ -157,8 +157,8 @@ else
     if [ 0"$QQREAD_CRON" = "0" ]; then
         QQREAD_CRON="*/20 */1 * * *"
     fi
-    echo "#企鹅读书小程序" >>$defaultListFile
-    echo "$QQREAD_CRON sleep \$((RANDOM % 180)) && node /qqread/Task/qqreadnode.js >> /logs/qqreadnode.log 2>&1" >>$defaultListFile
+    echo "#企鹅读书小程序" >>$mergedListFile
+    echo "$QQREAD_CRON sleep \$((RANDOM % 180)) && node /qqread/Task/qqreadnode.js >> /logs/qqreadnode.log 2>&1" >>$mergedListFile
 fi
 
 ##判断火山极速版相关变量存在，才会更新相关任务脚本
@@ -179,8 +179,8 @@ else
     if [ 0"$HOTSOON_CRON" = "0" ]; then
         HOTSOON_CRON="*/5 */1 * * *"
     fi
-    echo "#火山极速版" >>$defaultListFile
-    echo "$HOTSOON_CRON node /hotsoon/Scripts/hotsoon.js >> /logs/hotsoon.log 2>&1" >>$defaultListFile
+    echo "#火山极速版" >>$mergedListFile
+    echo "$HOTSOON_CRON node /hotsoon/Scripts/hotsoon.js >> /logs/hotsoon.log 2>&1" >>$mergedListFile
 fi
 
 ##判断步步宝相关变量存在，才会配置定时任务
@@ -192,8 +192,8 @@ else
     if [ 0"$BBB_CRON" = "0" ]; then
         BBB_CRON="0 8-23/2 * * *"
     fi
-    echo "#步步宝" >>$defaultListFile
-    echo "$BBB_CRON node /adwktt/BBB.js >> /logs/BBB.log 2>&1" >>$defaultListFile
+    echo "#步步宝" >>$mergedListFile
+    echo "$BBB_CRON node /adwktt/BBB.js >> /logs/BBB.log 2>&1" >>$mergedListFile
 fi
 
 if [ 0"$BBB_COOKIE2" = "0" ]; then
@@ -204,8 +204,8 @@ else
     if [ 0"$BBB_CRON" = "0" ]; then
         BBB_CRON="0 8-23/2 * * *"
     fi
-    echo "#步步宝2" >>$defaultListFile
-    echo "$BBB_CRON node /adwktt/BBB2.js >> /logs/BBB2.log 2>&1" >>$defaultListFile
+    echo "#步步宝2" >>$mergedListFile
+    echo "$BBB_CRON node /adwktt/BBB2.js >> /logs/BBB2.log 2>&1" >>$mergedListFile
 fi
 
 if [ 0"$BBB_COOKIE3" = "0" ]; then
@@ -216,8 +216,8 @@ else
     if [ 0"$BBB_CRON" = "0" ]; then
         BBB_CRON="0 8-23/2 * * *"
     fi
-    echo "#步步宝3" >>$defaultListFile
-    echo "$BBB_CRON node /adwktt/BBB3.js >> /logs/BBB3.log 2>&1" >>$defaultListFile
+    echo "#步步宝3" >>$mergedListFile
+    echo "$BBB_CRON node /adwktt/BBB3.js >> /logs/BBB3.log 2>&1" >>$mergedListFile
 fi
 
 ##判断汽车之家极速版相关变量存在，才会更新相关任务脚本
@@ -236,8 +236,8 @@ else
     if [ 0"$QCZJ_CRON" = "0" ]; then
         QCZJ_CRON="*/20 */1 * * *"
     fi
-    echo "#汽车之家极速版" >>$defaultListFile
-    echo "$QCZJ_CRON node /ZIYE_JavaScript/Task/qczjspeed.js >> /logs/qczjspeed.log 2>&1" >>$defaultListFile
+    echo "#汽车之家极速版" >>$mergedListFile
+    echo "$QCZJ_CRON node /ZIYE_JavaScript/Task/qczjspeed.js >> /logs/qczjspeed.log 2>&1" >>$mergedListFile
 fi
 
 ##判断笑谱相关变量存在，才会更新相关任务脚本
@@ -249,8 +249,8 @@ else
     if [ 0"$XP_CRON" = "0" ]; then
         XP_CRON="*/20 9-22/1 * * *"
     fi
-    echo "#笑谱" >>$defaultListFile
-    echo "$XP_CRON node /ZIYE_JavaScript/Task/iboxpay.js >> /logs/iboxpay.log 2>&1" >>$defaultListFile
+    echo "#笑谱" >>$mergedListFile
+    echo "$XP_CRON node /ZIYE_JavaScript/Task/iboxpay.js >> /logs/iboxpay.log 2>&1" >>$mergedListFile
 fi
 
 ##判断返利网相关变量存在，才会更新相关任务脚本
@@ -261,8 +261,8 @@ else
     if [ 0"$FL_CRON" = "0" ]; then
         FL_CRON="0 8,10,17,23 * * *"
     fi
-    echo "#返利网" >>$defaultListFile
-    echo "$FL_CRON node /ZIYE_JavaScript/Task/flw.js >> /logs/flw.log 2>&1" >>$defaultListFile
+    echo "#返利网" >>$mergedListFile
+    echo "$FL_CRON node /ZIYE_JavaScript/Task/flw.js >> /logs/flw.log 2>&1" >>$mergedListFile
 fi
 
 ##判断多看点相关变量存在，才会更新相关任务脚本
@@ -275,8 +275,8 @@ else
     if [ 0"$DKD_CRON" = "0" ]; then
         DKD_CRON="*/30 * * * *"
     fi
-    echo "#多看点" >>$defaultListFile
-    echo "$DKD_CRON node /ZIYE_JavaScript/Task/duokandian.js >> /logs/duokandian.log 2>&1" >>$defaultListFile
+    echo "#多看点" >>$mergedListFile
+    echo "$DKD_CRON node /ZIYE_JavaScript/Task/duokandian.js >> /logs/duokandian.log 2>&1" >>$mergedListFile
 fi
 
 ##判断芝嫲视频相关变量存在，才会更新相关任务脚本
@@ -287,6 +287,6 @@ else
     if [ 0"$ZM_CRON" = "0" ]; then
         ZM_CRON="*/30 * * * *"
     fi
-    echo "#芝嫲视频" >>$defaultListFile
-    echo "$ZM_CRON node /ZIYE_JavaScript/Task/zhima.js >> /logs/zhima.log 2>&1" >>$defaultListFile
+    echo "#芝嫲视频" >>$mergedListFile
+    echo "$ZM_CRON node /ZIYE_JavaScript/Task/zhima.js >> /logs/zhima.log 2>&1" >>$mergedListFile
 fi
