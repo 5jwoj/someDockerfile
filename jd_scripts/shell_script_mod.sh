@@ -8,15 +8,6 @@ if [ $(grep -c "docker_entrypoint.sh" /scripts/docker/merged_list_file.sh) -eq '
     cat /scripts/docker/remote_task.sh > /scripts/docker/docker_entrypoint.sh
 fi
 
-if [ ! -f "/scripts/joy_reward.js" ]; then
-    echo "未挂载joy_reward.js，跳过添加定时任务..."
-else
-    echo "已挂载joy_reward.js，添加定时任务..."
-    echo "# 宠汪汪积分兑换奖品" >> /scripts/docker/merged_list_file.sh
-    echo "0 0-16/8 * * * node /scripts/joy_reward.js >> /scripts/logs/jd_joy_reward.log 2>&1" >> /scripts/docker/merged_list_file.sh
-fi
-
-
 ## 克隆i-chenzhe仓库
 if [ ! -d "/i-chenzhe/" ]; then
     echo "未检查到i-chenzhe仓库脚本，初始化下载相关脚本..."
@@ -29,12 +20,18 @@ else
     cp -f /i-chenzhe/jd_*.js /scripts
 fi
 
+## 宠汪汪积分兑换奖品
+echo "# 宠汪汪积分兑换奖品" >> /scripts/docker/merged_list_file.sh
+echo "0 0-16/8 * * * node /scripts/jd_joy_reward.js >> /scripts/logs/jd_joy_reward.log 2>&1" >> /scripts/docker/merged_list_file.sh
 ## 百变大咖秀
 echo "# 百变大咖秀" >> /scripts/docker/merged_list_file.sh
-echo "10 10 * * 1-3 node /scripts/jd_entertainment.js >> /scripts/logs/jd_entertainment.log 2>&1" >> /scripts/docker/merged_list_file.sh
+echo "10 10,11 * * 2-5 node /scripts/jd_entertainment.js >> /scripts/logs/jd_entertainment.log 2>&1" >> /scripts/docker/merged_list_file.sh
 ## 粉丝互动
 echo "# 粉丝互动" >> /scripts/docker/merged_list_file.sh
 echo "3 10 * * * node /scripts/jd_fanslove.js >> /scripts/logs/jd_fanslove.log 2>&1" >> /scripts/docker/merged_list_file.sh
+## 母婴-跳一跳
+echo "# 母婴-跳一跳" >> /scripts/docker/merged_list_file.sh
+echo "5 12 22-27 2 * node /scripts/jd_jump-jump.js >> /scripts/logs/jd_jump-jump.log 2>&1" >> /scripts/docker/merged_list_file.sh
 
 ## 京喜财富岛
 wget -O /scripts/jx_cfd.js https://raw.githubusercontent.com/moposmall/Script/main/Me/jx_cfd.js
