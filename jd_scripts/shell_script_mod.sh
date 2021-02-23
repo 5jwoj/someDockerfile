@@ -8,7 +8,7 @@ if [ $(grep -c "docker_entrypoint.sh" /scripts/docker/merged_list_file.sh) -eq '
     cat /scripts/docker/remote_task.sh > /scripts/docker/docker_entrypoint.sh
 fi
 
-if [ ! -e "/scripts/joy_reward.js" ]; then
+if [ ! -f "/scripts/joy_reward.js" ]; then
     echo "未挂载joy_reward.js，跳过添加定时任务..."
 else
     echo "已挂载joy_reward.js，添加定时任务..."

@@ -4,10 +4,6 @@ set -e
 echo "定义定时任务合并处理用到的文件路径..."
 defaultListFile="/scripts/docker/$DEFAULT_LIST_FILE"
 echo "默认文件定时任务文件路径为 ${defaultListFile}"
-if [ $CUSTOM_LIST_FILE ]; then
-    customListFile="/scripts/docker/$CUSTOM_LIST_FILE"
-    echo "自定义定时任务文件路径为 ${customListFile}"
-fi
 mergedListFile="/scripts/docker/merged_list_file.sh"
 echo "合并后定时任务文件路径为 ${mergedListFile}"
 
@@ -17,6 +13,16 @@ cat $defaultListFile >$mergedListFile
 echo "第2步判断是否存在自定义任务任务列表并追加..."
 if [ $CUSTOM_LIST_FILE ]; then
     echo "您配置了自定义任务文件：$CUSTOM_LIST_FILE，自定义任务类型为：$CUSTOM_LIST_MERGE_TYPE..."
+    customListFile="/scripts/docker/custom_list_file.sh"
+    if expr "$CUSTOM_LIST_FILE" : 'http.*' &>/dev/null; then
+        echo "自定义任务文件为远程脚本，开始下载自定义远程任务..."
+        wget -O $customListFile $CUSTOM_LIST_FILE
+        echo "下载完成。"
+    elif [ -f /scripts/docker/$CUSTOM_LIST_FILE ]; then
+        echo "自定义任务文件为本地挂载。"
+        cp -f /scripts/docker/$CUSTOM_LIST_FILE $customListFile
+    fi
+
     if [ -f "$customListFile" ]; then
         if [ $CUSTOM_LIST_MERGE_TYPE == "append" ]; then
             echo "合并默认定时任务文件：$DEFAULT_LIST_FILE 和 自定义定时任务文件：$CUSTOM_LIST_FILE"
