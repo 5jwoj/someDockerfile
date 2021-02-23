@@ -286,8 +286,9 @@ fi
 if [ 0"$ZM_zhimabody" = "0" ]; then
     echo "没有配置芝嫲视频，相关环境变量参数，跳过配置定时任务"
 else
+    sed -i "s/D = (nowTimes.getDate().*$/D = (nowTimes.getDate() < 10 ? '0' + (nowTimes.getDate()) : nowTimes.getDate());/g" /ZIYE_JavaScript/Task/zhima.js
     if [ 0"$ZM_CRON" = "0" ]; then
-        ZM_CRON="0 * * * *"
+        ZM_CRON="*/30 * * * *"
     fi
     echo "#芝嫲视频" >>$defaultListFile
     echo "$ZM_CRON node /ZIYE_JavaScript/Task/zhima.js >> /logs/zhima.log 2>&1" >>$defaultListFile
