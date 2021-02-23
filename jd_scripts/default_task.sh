@@ -68,13 +68,13 @@ else
         echo "自定义远程shell脚本下载并执行结束。"
     else
         if [ ! -f $CUSTOM_SHELL_FILE ]; then
-            echo "自定义shell脚本为docker挂载脚本文件，但是指定挂载文件不存在，跳过执行。"
+            echo "自定义shell脚本为挂载的脚本文件，但是指定挂载文件不存在，跳过执行。"
         else
-            echo "docker挂载的自定shell脚本，开始执行..."
+            echo "挂载的自定shell脚本，开始执行..."
             echo "" >>$mergedListFile
             echo "##############挂载脚本##############" >>$mergedListFile
             sh -x $CUSTOM_SHELL_FILE
-            echo "docker挂载的自定shell脚本，执行结束。"
+            echo "挂载的自定shell脚本，执行结束。"
         fi
     fi
 fi

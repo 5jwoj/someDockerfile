@@ -14,7 +14,10 @@ echo "合并后定时任务文件路径为 ${mergedListFile}"
 echo "第1步将默认定时任务列表添加到合并后定时任务文件..."
 cat $defaultListFile >$mergedListFile
 
-echo "第2步判断是否存在自定义任务任务列表并追加..."
+echo "第2步执行proc_file.sh脚本任务..."
+sh -x /jds/updateTeam/proc_file.sh
+
+echo "第3步判断是否存在自定义任务任务列表并追加..."
 if [ $CUSTOM_LIST_FILE ]; then
     echo "您配置了自定义任务文件：$CUSTOM_LIST_FILE，自定义任务类型为：$CUSTOM_LIST_MERGE_TYPE..."
     if [ -f "$customListFile" ]; then
@@ -34,9 +37,6 @@ if [ $CUSTOM_LIST_FILE ]; then
 else
     echo "当前只使用了默认定时任务文件 $DEFAULT_LIST_FILE ..."
 fi
-
-echo "第3步执行proc_file.sh脚本任务..."
-sh -x /jds/updateTeam/proc_file.sh
 
 echo "第4步判断是否配置了默认脚本更新任务..."
 if [ $(grep -c "docker_entrypoint.sh" $mergedListFile) -eq '0' ]; then

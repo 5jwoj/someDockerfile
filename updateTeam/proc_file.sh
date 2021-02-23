@@ -5,7 +5,6 @@ defaultListFile="/jds/updateTeam/$DEFAULT_LIST_FILE"
 customListFile="/jds/updateTeam/$CUSTOM_LIST_FILE"
 mergedListFile="/jds/updateTeam/merged_list_file.sh"
 
-
 function initupdateTeam() {
     mkdir /updateTeam
     cd /updateTeam
