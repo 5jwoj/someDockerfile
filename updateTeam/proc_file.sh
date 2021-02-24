@@ -33,7 +33,7 @@ fi
 ##京东京喜工厂自动开团
 if [ $jd_jxFactoryCreateTuan_ENABLE = "Y" ]; then
     sed -i "s/.\/shareCodes/\/shareCodes/g" /scripts/jd_jxFactoryCreateTuan.js
-    sed -i "s/TvjO5k4gaVqVHMRJIogd_g==/RtWNiMlXQlq9AQX_6IOu-A==/g" /scripts/jd_jxFactoryCreateTuan.js
+    sed -i "s/\`TvjO5k4gaVqVHMRJIogd_g==\`/process.env.tuanActiveId/g" /scripts/jd_jxFactoryCreateTuan.js
     echo "执行京东京喜工厂自动开团..."
     node /scripts/jd_jxFactoryCreateTuan.js >> /scripts/logs/jd_jxFactoryCreateTuan.log 2>&1
 fi
