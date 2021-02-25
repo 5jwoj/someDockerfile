@@ -227,7 +227,7 @@ else
     sed -i "s/CASH = process.env.DKD_duokandianCASH || 0;/CASH = process.env.DKD_duokandianCASH || 0;\n    CASHTYPE = process.env.DKD_duokandianCASHTYPE || 2;/g" /ZIYE_JavaScript/Task//duokandian.js
     sed -i 's/"type":2/"type":${CASHTYPE}/g' /ZIYE_JavaScript/Task//duokandian.js
     if [ 0"$DKD_CRON" = "0" ]; then
-        DKD_CRON="*/30 * * * *"
+        DKD_CRON="0 8-23/1 * * *"
     fi
     echo "#多看点" >>$mergedListFile
     echo "$DKD_CRON node /ZIYE_JavaScript/Task/duokandian.js >> /logs/duokandian.log 2>&1" >>$mergedListFile
