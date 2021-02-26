@@ -102,7 +102,7 @@ else
     sed -i 's/if\ XMLY_ACCUMULATE_TIME.*$/if\ os.environ["XMLY_ACCUMULATE_TIME"]=="1":/g' /xmly_speed/xmly_speed.py
     sed -i "s/\(xmly_speed_cookie\.split('\)\\\n/\1\|/g" /xmly_speed/xmly_speed.py
     sed -i 's/cookiesList.append(line)/cookiesList.append(line.replace(" ",""))/g' /xmly_speed/xmly_speed.py
-    sed -i 's/if int(_notify_time.split.*$/if _notify_time.split()[0] == os.environ["XMLY_NOTIFY_TIME"]\ and\ int(_notify_time.split()[1]) < 30:/g' /xmly_speed/xmly_speed.py
+    sed -i 's/if int(_notify_time.split.*$/if _notify_time.split()[0] == os.environ["XMLY_NOTIFY_TIME"]\ and\ int(_notify_time.split()[1]) < 10:/g' /xmly_speed/xmly_speed.py
     
     sed -i "s/message += f\"【设备】.*$/message += f\"[{i[0].replace\(' ',''\):<9}]: {i[1]:<6.2f} \(＋{i[2]:<4.2f}\) {i[3]:<7.2f} {i[4]}\\\\\\\30\\\n\"/g" /xmly_speed/xmly_speed.py
     sed -i 's/    message += f"【当前剩余】.*$/message += "⭕tips:第30天需要手动签到 by zero_s1, (*^_^*)欢迎打赏 "/g' /xmly_speed/xmly_speed.py
@@ -111,7 +111,7 @@ else
     sed -i '/message += f"【连续签到】.*$/d' /xmly_speed/xmly_speed.py
     sed -i '/message += f"\\n".*$/d' /xmly_speed/xmly_speed.py
     if [ 0"$XMLY_CRON" = "0" ]; then
-        XMLY_CRON="*/30 * * * *"
+        XMLY_CRON="*/20 * * * *"
     fi
     echo "#喜马拉雅极速版">>$mergedListFile
     echo "$XMLY_CRON python3 /xmly_speed/xmly_speed.py >> /logs/xmly_speed.log 2>&1" >>$mergedListFile
@@ -249,7 +249,7 @@ if [ 0"$BBB_bububaoTOKEN" = "0" ]; then
     echo "没有配置步步宝，相关环境变量参数，跳过配置定时任务"
 else
     if [ 0"$BBB_CRON" = "0" ]; then
-        BBB_CRON="*/30 * * * *"
+        BBB_CRON="*/20 * * * *"
     fi
     echo "#步步宝" >>$mergedListFile
     echo "$BBB_CRON node /ZIYE_JavaScript/Task/bububao.js >> /logs/bububao.log 2>&1" >>$mergedListFile
