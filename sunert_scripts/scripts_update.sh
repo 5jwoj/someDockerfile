@@ -13,7 +13,7 @@ npm install --loglevel error --prefix /Scripts
 
 #判断百度极速版相关变量存在，才会配置定时任务
 if [ 0"$BAIDU_COOKIE" = "0" ]; then
-    echo "没有配置百度Cookie，相关环境变量参数，跳过配置定时任务"
+    echo "没有配置百度极速版，相关环境变量参数，跳过配置定时任务"
 else
     if [ 0"$BAIDU_CRON" = "0" ]; then
         BAIDU_CRON="*/20 6-22/1 * * *"
@@ -24,7 +24,7 @@ fi
 
 #判断中青看点极速版相关变量存在，才会配置定时任务
 if [ 0"$YOUTH_HEADER" = "0" ]; then
-    echo "没有配置中青youth.js，相关环境变量参数，跳过配置定时任务"
+    echo "没有配置中青看点极速版youth，相关环境变量参数，跳过配置定时任务"
 else
     sed -i 's/"false"/"true"/g' /Scripts/Task/youth.js
     sed -i "s/await readArticle();/\/\/await readArticle();/g" /Scripts/Task/youth.js
@@ -36,7 +36,7 @@ else
 fi
 
 if [ 0"$YOUTH_START" = "0" ]; then
-    echo "没有配置中青youth_gain.js，相关环境变量参数，跳过配置定时任务"
+    echo "没有配置中青看点极速版youth_gain，相关环境变量参数，跳过配置定时任务"
 else
     if [ 0"$YOUTH_GAIN_CRON" = "0" ]; then
         YOUTH_GAIN_CRON="0 8 * * *"
@@ -46,7 +46,7 @@ fi
 
 if [ 0"$YOUTH_READ2" = "0" ]; then
     if [ 0"$YOUTH_READ" = "0" ]; then
-        echo "没有配置中青youth_read.js，相关环境变量参数，跳过配置定时任务"
+        echo "没有配置中青看点极速版youth_read，相关环境变量参数，跳过配置定时任务"
     else
         if [ 0"$YOUTH_READ_CRON" = "0" ]; then
             YOUTH_READ_CRON="5 9-21/3 * * *"
