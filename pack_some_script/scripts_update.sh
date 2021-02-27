@@ -104,10 +104,10 @@ else
     sed -i 's/cookiesList.append(line)/cookiesList.append(line.replace(" ",""))/g' /xmly_speed/xmly_speed.py
     sed -i 's/if int(_notify_time.split.*$/if _notify_time.split()[0] == os.environ["XMLY_NOTIFY_TIME"]\ and\ int(_notify_time.split()[1]) < 10:/g' /xmly_speed/xmly_speed.py
     
-    sed -i "s/message += f\"【设备】.*$/message += f\"[{i[0].replace\(' ',''\):<9}]: {i[1]:<6.2f} \(＋{i[2]:<4.2f}\) {i[3]:<7.2f} {i[4]}\\\\\\\30\\\n\"/g" /xmly_speed/xmly_speed.py
+    sed -i "s/message += f\"【账户】.*$/message += f\"[{i[0].replace\(' ',''\):<9}]: {i[1]:<6.2f} \(＋{i[2]:<4.2f}\) {i[3]:<7.2f} {i[4]}\\\\\\\30\\\n\"/g" /xmly_speed/xmly_speed.py
     sed -i 's/    message += f"【当前剩余】.*$/message += "⭕tips:第30天需要手动签到 by zero_s1, (*^_^*)欢迎打赏 "/g' /xmly_speed/xmly_speed.py
     sed -i 's/    message += f"【今天】.*$/if len(table) <= 20:/g' /xmly_speed/xmly_speed.py
-    sed -i 's/message += f"【历史】.*$/message = "【设备】| 当前剩余 | 今天 | 历史 | 连续签到\\n"+message/g' /xmly_speed/xmly_speed.py
+    sed -i 's/message += f"【历史】.*$/message = "【账户】| 当前剩余 | 今天 | 历史 | 连续签到\\n"+message/g' /xmly_speed/xmly_speed.py
     sed -i '/message += f"【连续签到】.*$/d' /xmly_speed/xmly_speed.py
     sed -i '/message += f"\\n".*$/d' /xmly_speed/xmly_speed.py
     if [ 0"$XMLY_CRON" = "0" ]; then
