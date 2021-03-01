@@ -248,6 +248,7 @@ fi
 if [ 0"$BBB_bububaoTOKEN" = "0" ]; then
     echo "没有配置步步宝，相关环境变量参数，跳过配置定时任务"
 else
+    sed -i "s/\$.user.username)/\$.user.uid)/g" /ZIYE_JavaScript/Task/bububao.js
     if [ 0"$BBB_CRON" = "0" ]; then
         BBB_CRON="*/20 * * * *"
     fi
@@ -259,6 +260,7 @@ fi
 if [ 0"$YDZ_yuedongzuTOKEN" = "0" ]; then
     echo "没有配置悦动族，相关环境变量参数，跳过配置定时任务"
 else
+    sed -i "s/\$.user.username)/\$.user.uid)/g" /ZIYE_JavaScript/Task/yuedongzu.js
     if [ 0"$YDZ_CRON" = "0" ]; then
         YDZ_CRON="*/20 * * * *"
     fi
