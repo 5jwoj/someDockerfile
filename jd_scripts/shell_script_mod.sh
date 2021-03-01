@@ -33,10 +33,6 @@ echo "5 12 22-27 2 * node /scripts/jd_jump-jump.js >> /scripts/logs/jd_jump-jump
 echo "# 超级摇一摇" >> /scripts/docker/merged_list_file.sh
 echo "3 20 * * * node /scripts/jd_shake.js >> /scripts/logs/jd_shake.log 2>&1" >> /scripts/docker/merged_list_file.sh
 
-## 京喜财富岛
-wget -O /scripts/jx_cfd.js https://raw.githubusercontent.com/moposmall/Script/main/Me/jx_cfd.js
-echo "# 京喜财富岛" >> /scripts/docker/merged_list_file.sh
-echo "1 * * * * node /scripts/jx_cfd.js >> /scripts/logs/jx_cfd.log 2>&1" >> /scripts/docker/merged_list_file.sh
 ## 京喜财富岛提现
 wget -O /scripts/jx_cfdtx.js https://raw.githubusercontent.com/Aaron-lv/JavaScript/master/Task/jx_cfdtx.js
 echo "# 京喜财富岛提现" >> /scripts/docker/merged_list_file.sh

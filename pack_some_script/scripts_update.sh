@@ -45,7 +45,7 @@ function inithotsoon() {
     git config core.sparsecheckout true
     echo Scripts/hotsoon.js >>/hotsoon/.git/info/sparse-checkout
     git pull origin master --rebase
-    wget -O /hotsoon/package.json https://raw.githubusercontent.com/ziye66666/JavaScript/main/package.json
+    wget -O /hotsoon/package.json https://raw.githubusercontent.com/Aaron-lv/ZIYE_JavaScript/main/package.json
     npm install
 }
 
@@ -54,7 +54,7 @@ function initziye {
     mkdir /ZIYE_JavaScript
     cd /ZIYE_JavaScript
     git init
-    git remote add -f origin https://github.com/ziye66666/JavaScript
+    git remote add -f origin https://github.com/Aaron-lv/ZIYE_JavaScript
     git config core.sparsecheckout true
     echo package.json >>/ZIYE_JavaScript/.git/info/sparse-checkout
     echo Task >>/ZIYE_JavaScript/.git/info/sparse-checkout
@@ -148,7 +148,7 @@ else
         echo "更新hotsoon脚本相关文件"
         git -C /hotsoon reset --hard
         git -C /hotsoon pull origin master --rebase
-        wget -O /hotsoon/package.json https://raw.githubusercontent.com/ziye66666/JavaScript/main/package.json
+        wget -O /hotsoon/package.json https://raw.githubusercontent.com/Aaron-lv/ZIYE_JavaScript/main/package.json
         npm install --loglevel error --prefix /hotsoon
     fi
     wget -O /hotsoon/Scripts/sendNotify.js https://raw.githubusercontent.com/ZhiYi-N/script/master/sendNotify.js
