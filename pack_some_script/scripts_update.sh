@@ -254,3 +254,14 @@ else
     echo "#步步宝" >>$mergedListFile
     echo "$BBB_CRON node /ZIYE_JavaScript/Task/bububao.js >> /logs/bububao.log 2>&1" >>$mergedListFile
 fi
+
+##判断悦动族相关变量存在，才会更新相关任务脚本
+if [ 0"$YDZ_yuedongzuTOKEN" = "0" ]; then
+    echo "没有配置悦动族，相关环境变量参数，跳过配置定时任务"
+else
+    if [ 0"$YDZ_CRON" = "0" ]; then
+        YDZ_CRON="*/20 * * * *"
+    fi
+    echo "#悦动族" >>$mergedListFile
+    echo "$YDZ_CRON node /ZIYE_JavaScript/Task/yuedongzu.js >> /logs/yuedongzu.log 2>&1" >>$mergedListFile
+fi
