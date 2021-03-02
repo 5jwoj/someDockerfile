@@ -27,7 +27,6 @@ if [ 0"$YOUTH_HEADER" = "0" ]; then
     echo "没有配置中青看点极速版youth，相关环境变量参数，跳过配置定时任务"
 else
     sed -i 's/"false"/"true"/g' /Scripts/Task/youth.js
-    sed -i "s/await readArticle();/\/\/await readArticle();/g" /Scripts/Task/youth.js
     if [ 0"$YOUTH_CRON" = "0" ]; then
         YOUTH_CRON="*/15 */1 * * *"
     fi
