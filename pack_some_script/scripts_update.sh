@@ -265,3 +265,14 @@ else
     echo "#悦动族" >>$mergedListFile
     echo "$YDZ_CRON node /ZIYE_JavaScript/Task/yuedongzu.js >> /logs/yuedongzu.log 2>&1" >>$mergedListFile
 fi
+
+##判断全民悦动相关变量存在，才会更新相关任务脚本
+if [ 0"$QMYD_qmydTOKEN" = "0" ]; then
+    echo "没有配置全民悦动，相关环境变量参数，跳过配置定时任务"
+else
+    if [ 0"$QMYD_CRON" = "0" ]; then
+        QMYD_CRON="*/20 * * * *"
+    fi
+    echo "#全民悦动" >>$mergedListFile
+    echo "$QMYD_CRON node /ZIYE_JavaScript/Task/qmyd.js >> /logs/qmyd.log 2>&1" >>$mergedListFile
+fi
