@@ -88,8 +88,8 @@ sed -i "s/https:\/\/gitee.com\/lxk0301\/updateTeam\/raw\/master\/shareCodes\/jd_
 
 ## 宠汪汪赛跑
 wget -O /scripts/jd_joy_run.js https://raw.githubusercontent.com/Aaron-lv/JavaScript/master/Task/jd_joy_run.js
-sed -i "s/let invite_pins =.*$/let invite_pins = ['zhaosen2580,jd_61f1269fd3236,jd_47ee22449e303,jd_6c5e39478ec3b,mjw6652,18323695900a,liuz9988']/g" /scripts/jd_joy_run.js
-sed -i "s/let run_pins =.*$/let run_pins = ['zhaosen2580,jd_61f1269fd3236,jd_47ee22449e303,jd_6c5e39478ec3b,mjw6652,18323695900a,liuz9988']/g" /scripts/jd_joy_run.js
+sed -i "s/let invite_pins =.*$/let invite_pins = ['zhaosen2580,jd_61f1269fd3236,jd_47ee22449e303,jd_6c5e39478ec3b,mjw6652,18323695900a,liuz9988'];/g" /scripts/jd_joy_run.js
+sed -i "s/let run_pins =.*$/let run_pins = ['zhaosen2580,jd_61f1269fd3236,jd_47ee22449e303,jd_6c5e39478ec3b,mjw6652,18323695900a,liuz9988'];/g" /scripts/jd_joy_run.js
 sed -i 's/let friendsArr =.*$/let friendsArr = ["zhaosen2580","jd_61f1269fd3236","jd_47ee22449e303","jd_6c5e39478ec3b","mjw6652","18323695900a","liuz9988"]/g' /scripts/jd_joy_run.js
 
 ## 修改助力开关

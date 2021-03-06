@@ -27,7 +27,7 @@ echo "# 粉丝互动" >> /scripts/docker/merged_list_file.sh
 echo "3 10 * * * node /scripts/jd_fanslove.js >> /scripts/logs/jd_fanslove.log 2>&1" >> /scripts/docker/merged_list_file.sh
 ## 母婴-跳一跳
 echo "# 母婴-跳一跳" >> /scripts/docker/merged_list_file.sh
-echo "5 8,14,20 2-7 3 * node /scripts/jd_jump-jump.js >> /scripts/logs/jd_jump-jump.log 2>&1" >> /scripts/docker/merged_list_file.sh
+echo "5 8,14,20 2-7 3 * node /scripts/jd_jump_jump.js >> /scripts/logs/jd_jump_jump.log 2>&1" >> /scripts/docker/merged_list_file.sh
 ## 超级摇一摇
 echo "# 超级摇一摇" >> /scripts/docker/merged_list_file.sh
 echo "3 20 * * * node /scripts/jd_shake.js >> /scripts/logs/jd_shake.log 2>&1" >> /scripts/docker/merged_list_file.sh
