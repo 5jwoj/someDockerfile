@@ -37,6 +37,13 @@ if [ $jd_jxFactoryCreateTuan_ENABLE = "Y" ]; then
     node /scripts/jd_jxFactoryCreateTuan.js >> /scripts/logs/jd_jxFactoryCreateTuan.log 2>&1
 fi
 
+##更新领现金
+if [ $jd_updateCash_ENABLE = "Y" ]; then
+    sed -i "s/.\/shareCodes/\/shareCodes/g" /scripts/jd_updateCash.js
+    echo "执行更新领现金..."
+    node /scripts/jd_updateCash.js >> /scripts/logs/jd_updateCash.log 2>&1
+fi
+
 ##赚京豆小程序
 if [ $jd_zzUpdate_ENABLE = "Y" ]; then
     sed -i "s/.\/shareCodes/\/shareCodes/g" /scripts/jd_zzUpdate.js
