@@ -43,7 +43,7 @@ function inithotsoon() {
     git init
     git remote add -f origin https://github.com/ZhiYi-N/Private-Script
     git config core.sparsecheckout true
-    echo Scripts/hotsoon.js >>/hotsoon/.git/info/sparse-checkout
+    echo Scripts/hotsoon_old.js >>/hotsoon/.git/info/sparse-checkout
     git pull origin master --rebase
     wget -O /hotsoon/package.json https://raw.githubusercontent.com/Aaron-lv/ZIYE_JavaScript/main/package.json
     npm install
@@ -156,7 +156,7 @@ else
         HOTSOON_CRON="*/5 * * * *"
     fi
     echo "#火山极速版" >>$mergedListFile
-    echo "$HOTSOON_CRON node /hotsoon/Scripts/hotsoon.js >> /logs/hotsoon.log 2>&1" >>$mergedListFile
+    echo "$HOTSOON_CRON node /hotsoon/Scripts/hotsoon_old.js >> /logs/hotsoon.log 2>&1" >>$mergedListFile
 fi
 
 ##判断ZIYE_JavaScript相关变量存在，才会更新相关任务脚本
