@@ -65,7 +65,7 @@ fi
 
 
 ## 修改京东汽车兑换定时
-sed -i "s/0 0 \* \* \* node \/scripts\/jd_car_exchange.js/1 0 \* \* \* node \/scripts\/jd_car_exchange.js/g" /scripts/docker/merged_list_file.sh
+sed -i "s/0 0 \* \* \* node \/scripts\/jd_car_exchange.js/0,1,2 0 \* \* \* node \/scripts\/jd_car_exchange.js/g" /scripts/docker/merged_list_file.sh
 ## 修改环球挑战赛定时
 sed -i "s/35 6,22 \* \* \* node \/scripts\/jd_global.js/55 6,22 \* \* \* node \/scripts\/jd_global.js/g" /scripts/docker/merged_list_file.sh
 sed -i "s/35 6,22 \* \* \* sleep \$((RANDOM % \$RANDOM_DELAY_MAX)); node \/scripts\/jd_global.js/55 6,22 \* \* \* sleep \$((RANDOM % \$RANDOM_DELAY_MAX)); node \/scripts\/jd_global.js/g" /scripts/docker/merged_list_file.sh
