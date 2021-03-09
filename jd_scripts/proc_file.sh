@@ -46,26 +46,26 @@ echo "整理完成，具体结果请查看${sharecodeFile}文件"
 echo "处理jd_crazy_joy_coin任务..."
 if [ ! $CRZAY_JOY_COIN_ENABLE ]; then
    echo "默认启用jd_crazy_joy_coin杀掉jd_crazy_joy_coin任务，并重启"
-   eval $(ps -ef | grep "jd_crazy" | awk '{print "kill "$1}')
+   eval $(ps -ef | grep "jd_crazy" | grep -v "grep" | awk '{print "kill "$1}')
    echo '' >/scripts/logs/jd_crazy_joy_coin.log
    node /scripts/jd_crazy_joy_coin.js | ts >>/scripts/logs/jd_crazy_joy_coin.log 2>&1 &
    echo "默认jd_crazy_joy_coin重启完成"
 else
    if [ $CRZAY_JOY_COIN_ENABLE = "Y" ]; then
       echo "配置启用jd_crazy_joy_coin，杀掉jd_crazy_joy_coin任务，并重启"
-      eval $(ps -ef | grep "jd_crazy" | awk '{print "kill "$1}')
+      eval $(ps -ef | grep "jd_crazy" | grep -v "grep" | awk '{print "kill "$1}')
       echo '' >/scripts/logs/jd_crazy_joy_coin.log
       node /scripts/jd_crazy_joy_coin.js | ts >>/scripts/logs/jd_crazy_joy_coin.log 2>&1 &
       echo "配置jd_crazy_joy_coin重启完成"
    else
-      eval $(ps -ef | grep "jd_crazy" | awk '{print "kill "$1}')
+      eval $(ps -ef | grep "jd_crazy" | grep -v "grep" | awk '{print "kill "$1}')
       echo "已配置不启用jd_crazy_joy_coin任务，不处理"
    fi
 fi
 
 
 ## 修改京东汽车兑换定时
-sed -i "s/0 0 \* \* \* node \/scripts\/jd_car_exchange.js/2 0 \* \* \* node \/scripts\/jd_car_exchange.js/g" /scripts/docker/merged_list_file.sh
+sed -i "s/0 0 \* \* \* node \/scripts\/jd_car_exchange.js/1 0 \* \* \* node \/scripts\/jd_car_exchange.js/g" /scripts/docker/merged_list_file.sh
 ## 修改环球挑战赛定时
 sed -i "s/35 6,22 \* \* \* node \/scripts\/jd_global.js/55 6,22 \* \* \* node \/scripts\/jd_global.js/g" /scripts/docker/merged_list_file.sh
 sed -i "s/35 6,22 \* \* \* sleep \$((RANDOM % \$RANDOM_DELAY_MAX)); node \/scripts\/jd_global.js/55 6,22 \* \* \* sleep \$((RANDOM % \$RANDOM_DELAY_MAX)); node \/scripts\/jd_global.js/g" /scripts/docker/merged_list_file.sh
