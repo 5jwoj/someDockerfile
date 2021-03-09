@@ -50,17 +50,7 @@ else
     echo "合并后的定时任务文件，已包含必须的默认定时任务，跳过执行..."
 fi
 
-echo "第4步判断是否配置了随即延迟参数..."
-if [ $RANDOM_DELAY_MAX ]; then
-    if [ $RANDOM_DELAY_MAX -ge 1 ]; then
-        echo "已设置随机延迟为 $RANDOM_DELAY_MAX , 设置延迟任务中..."
-        sed -i "/\(jd_blueCoin.js\|jd_joy_reward.js\|jd_car_exchange.js\)/!s/node/sleep \$((RANDOM % \$RANDOM_DELAY_MAX)); node/g" $mergedListFile
-    fi
-else
-    echo "未配置随即延迟对应的环境变量，故不设置延迟任务..."
-fi
-
-echo "第5步判断是否配置自定义shell脚本..."
+echo "第4步判断是否配置自定义shell脚本..."
 if [ 0"$CUSTOM_SHELL_FILE" = "0" ]; then
     echo "未配置自定shell脚本文件，跳过执行。"
 else
@@ -83,6 +73,16 @@ else
             echo "挂载的自定shell脚本，执行结束。"
         fi
     fi
+fi
+
+echo "第5步判断是否配置了随即延迟参数..."
+if [ $RANDOM_DELAY_MAX ]; then
+    if [ $RANDOM_DELAY_MAX -ge 1 ]; then
+        echo "已设置随机延迟为 $RANDOM_DELAY_MAX , 设置延迟任务中..."
+        sed -i "/jd_blueCoin.js\|jd_joy_reward.js\|jd_car_exchange.js/!s/node/sleep \$((RANDOM % \$RANDOM_DELAY_MAX)); node/g" $mergedListFile
+    fi
+else
+    echo "未配置随即延迟对应的环境变量，故不设置延迟任务..."
 fi
 
 echo "第6步判断是否配置了不运行的脚本..."
