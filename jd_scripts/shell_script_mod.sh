@@ -17,7 +17,7 @@ else
     git -C /i-chenzhe reset --hard
     git -C /i-chenzhe pull --rebase
 fi
-cp -f /i-chenzhe/jd_*.js /scripts
+cp -f /i-chenzhe/*_*.js /scripts
 
 ## 百变大咖秀
 echo "# 百变大咖秀" >> /scripts/docker/merged_list_file.sh
@@ -34,6 +34,12 @@ echo "3 20 * * * node /scripts/jd_shake.js >> /scripts/logs/jd_shake.log 2>&1" >
 ## 京东小魔方
 echo "# 京东小魔方" >> /scripts/docker/merged_list_file.sh
 echo "10 10 * * * node /scripts/jd_xmf.js >> /scripts/logs/jd_xmf.log 2>&1" >> /scripts/docker/merged_list_file.sh
+## 京东超市-大转盘
+echo "# 京东超市-大转盘" >> /scripts/docker/merged_list_file.sh
+echo "3 10 * * * node /scripts/z_marketLottery.js >> /scripts/logs/jd_marketLottery.log 2>&1" >> /scripts/docker/merged_list_file.sh
+## 超级品类日
+echo "# 超级品类日" >> /scripts/docker/merged_list_file.sh
+echo "13 8,10 8-15 3 * node /scripts/z_superDay.js >> /scripts/logs/jd_superDay.log 2>&1" >> /scripts/docker/merged_list_file.sh
 
 ## 京东试用
 if [ $jd_try_ENABLE = "Y" ]; then

@@ -98,5 +98,5 @@ sed -i "s/let run_pins =.*$/let run_pins = ['zhaosen2580,jd_61f1269fd3236,jd_47e
 sed -i 's/let friendsArr =.*$/let friendsArr = ["zhaosen2580","jd_61f1269fd3236","jd_47ee22449e303","jd_6c5e39478ec3b","mjw6652","liuz9988","18323695900a"]/g' /scripts/jd_joy_run.js
 
 ## 修改助力开关
-sed -i "s/helpAu = true;/helpAu = false;/g" /scripts/jd_*.js
-sed -i "s/helpAuthor = true;/helpAuthor = false;/g" /scripts/jd_*.js
+sed -i "s/helpAu = true;/helpAu = false;/g" /scripts/*_*.js
+sed -i "s/helpAuthor = true;/helpAuthor = false;/g" /scripts/*_*.js
