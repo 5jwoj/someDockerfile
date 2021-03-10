@@ -3,9 +3,9 @@ set -e
 
 echo "定义定时任务合并处理用到的文件路径..."
 defaultListFile="/scripts/docker/$DEFAULT_LIST_FILE"
-echo "默认文件定时任务文件路径为 ${defaultListFile}"
+echo "默认文件定时任务文件路径为 $defaultListFile"
 mergedListFile="/scripts/docker/merged_list_file.sh"
-echo "合并后定时任务文件路径为 ${mergedListFile}"
+echo "合并后定时任务文件路径为 $mergedListFile"
 
 echo "第1步将默认定时任务列表添加到合并后定时任务文件..."
 cat $defaultListFile >$mergedListFile
@@ -41,7 +41,7 @@ else
     echo "当前只使用了默认定时任务文件 $DEFAULT_LIST_FILE ..."
 fi
 
-echo "第3步判断是否配置了默认脚本更新任务..."
+echo "第3步判断是否配置了默认定时任务..."
 if [ $(grep -c "docker_entrypoint.sh" $mergedListFile) -eq '0' ]; then
     echo "合并后的定时任务文件，未包含必须的默认定时任务，增加默认定时任务..."
     echo "# 默认定时任务" >>$mergedListFile
@@ -75,7 +75,10 @@ else
     fi
 fi
 
-echo "第5步判断是否配置了随即延迟参数..."
+echo "第5步执行proc_file.sh脚本任务..."
+sh -x /scripts/docker/proc_file.sh
+
+echo "第6步判断是否配置了随即延迟参数..."
 if [ $RANDOM_DELAY_MAX ]; then
     if [ $RANDOM_DELAY_MAX -ge 1 ]; then
         echo "已设置随机延迟为 $RANDOM_DELAY_MAX , 设置延迟任务中..."
@@ -85,7 +88,15 @@ else
     echo "未配置随即延迟对应的环境变量，故不设置延迟任务..."
 fi
 
-echo "第6步判断是否配置了不运行的脚本..."
+echo "第7步判断是否开启了自动互助..."
+if [ $ENABLE_AUTO_HELP = "true" ]; then
+    echo "已开启自动互助，设置互助参数中..."
+    sed -i 's/node/. \/scripts\/docker\/auto_help.sh export \&\& node/g' $mergedListFile
+else
+    echo "未开启自动互助，跳过设置互助参数..."
+fi
+
+echo "第8步判断是否配置了不运行的脚本..."
 if [ $DO_NOT_RUN_SCRIPTS ]; then
     echo "您配置了不运行的脚本：$DO_NOT_RUN_SCRIPTS"
     arr=${DO_NOT_RUN_SCRIPTS//&/ }
@@ -94,14 +105,11 @@ if [ $DO_NOT_RUN_SCRIPTS ]; then
     done
 fi
 
-echo "第7步增加 |ts 任务日志输出时间戳..."
+echo "第9步增加 |ts 任务日志输出时间戳..."
 sed -i "/\( ts\| |ts\|| ts\)/!s/>>/\|ts >>/g" $mergedListFile
 
-echo "第8步执行proc_file.sh脚本任务..."
-sh -x /scripts/docker/proc_file.sh
-
-echo "第9步加载最新的定时任务文件..."
+echo "第10步加载最新的定时任务文件..."
 crontab $mergedListFile
 
-echo "第10步将仓库的docker_entrypoint.sh脚本更新至系统/usr/local/bin/docker_entrypoint.sh内..."
+echo "第11步将仓库的docker_entrypoint.sh脚本更新至系统/usr/local/bin/docker_entrypoint.sh内..."
 cat /scripts/docker/docker_entrypoint.sh >/usr/local/bin/docker_entrypoint.sh
