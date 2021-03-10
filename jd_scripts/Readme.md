@@ -84,7 +84,7 @@ jd_scripts
 - - [使用群晖默认配置用这个](./example/jd_scripts.syno.json)
 - - [使用群晖自定义任务追加到默认任务之后用这个](./example/jd_scripts.custom-append.syno.json)
 - - [使用群晖自定义任务覆盖默认任务用这个](./example/jd_scripts.custom-overwrite.syno.json)
-- `jd_scripts/docker-compose.yml`里面的环境变量(`environment:`)配置[参考这里](../githubAction.md#互助码类环境变量)
+- `jd_scripts/docker-compose.yml`里面的环境变量(`environment:`)配置[参考这里](./githubAction.md#环境变量说明)
 
 
 - `jd_scripts/my_crontab_list.sh` 参考内容如下,自己根据需要调整增加删除，不熟悉用户推荐使用默认配置：
@@ -217,11 +217,11 @@ jd_scripts
 - 如果是群晖用户，在docker注册表搜jd_scripts，双击下载映像。
 不需要docker-compose.yml，只需建个logs/目录，调整`jd_scripts.syno.json`里面对应的配置值，然后导入json配置新建容器。
 若要自定义my_crontab_list.sh，再建个my_crontab_list.sh文件，配置参考`jd_scripts.my_crontab_list.syno.json`。
-![image](../icon/qh1.png)
+![image](./icon/qh1.png)
 
-![image](../icon/qh2.png)
+![image](./icon/qh2.png)
 
-![image](../icon/qh3.png)
+![image](./icon/qh3.png)
 
 ### DOCKER专属环境变量
 
