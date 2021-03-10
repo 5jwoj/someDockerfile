@@ -35,7 +35,7 @@ else
 fi
 
 echo "替换执行文件..."
-ls /jds/jd_scripts/ |grep -v shell_script_mod.sh |xargs -i cp -rf /jds/jd_scripts/{} /scripts/docker/
+ls /jds/jd_scripts/*.sh |grep -v shell_script_mod.sh |xargs -i cp -rf /jds/jd_scripts/{} /scripts/docker/
 echo "替换完成。"
 
 echo "------------------------------------------------执行定时任务任务shell脚本------------------------------------------------"
