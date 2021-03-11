@@ -6,7 +6,7 @@ ENV DEFAULT_LIST_FILE=crontab_list.sh \
 
 RUN set -ex \
         && apk update && apk upgrade \
-        && apk add --no-cache tzdata git moreutils python3-dev py3-pip py3-cryptography jq curl \
+        && apk add --no-cache tzdata git moreutils python3 py3-pip jq curl \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
         && echo "Asia/Shanghai" > /etc/timezone
 

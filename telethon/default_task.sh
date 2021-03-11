@@ -14,7 +14,10 @@ echo "合并后定时任务文件路径为 ${mergedListFile}"
 echo "第1步将默认定时任务列表添加到合并后定时任务文件..."
 cat $defaultListFile >$mergedListFile
 
-echo "第2步判断是否存在自定义任务任务列表并追加..."
+echo "第2步执行scripts_update.sh脚本任务..."
+sh -x /pss/telethon/scripts_update.sh
+
+echo "第3步判断是否存在自定义任务任务列表并追加..."
 if [ $CUSTOM_LIST_FILE ]; then
     echo "您配置了自定义任务文件：$CUSTOM_LIST_FILE，自定义任务类型为：$CUSTOM_LIST_MERGE_TYPE..."
     if [ -f "$customListFile" ]; then
@@ -34,7 +37,7 @@ else
     echo "当前只使用了默认定时任务文件 $DEFAULT_LIST_FILE ..."
 fi
 
-echo "第3步判断是否配置了默认脚本更新任务..."
+echo "第4步判断是否配置了默认脚本更新任务..."
 if [ $(grep -c "docker_entrypoint.sh" $mergedListFile) -eq '0' ]; then
     echo "合并后的定时任务文件，未包含必须的默认定时任务，增加默认定时任务..."
     echo "" >>$mergedListFile
@@ -44,11 +47,11 @@ else
     echo "合并后的定时任务文件，已包含必须的默认定时任务，跳过执行..."
 fi
 
-echo "第4步增加 |ts 任务日志输出时间戳..."
+echo "第5步增加 |ts 任务日志输出时间戳..."
 sed -i "/\( ts\| |ts\|| ts\)/!s/>>/\|ts >>/g" $mergedListFile
 
-echo "第5步加载最新的定时任务文件..."
+echo "第6步加载最新的定时任务文件..."
 crontab $mergedListFile
 
-echo "第6步将仓库的docker_entrypoint.sh脚本更新至系统/usr/local/bin/docker_entrypoint.sh内..."
+echo "第7步将仓库的docker_entrypoint.sh脚本更新至系统/usr/local/bin/docker_entrypoint.sh内..."
 cat /pss/telethon/docker_entrypoint.sh >/usr/local/bin/docker_entrypoint.sh
