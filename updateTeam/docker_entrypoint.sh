@@ -11,7 +11,7 @@ cd /scripts
 git remote set-url origin $REPO_URL
 echo "git pull拉取最新代码..."
 git reset --hard
-git pull origin master --rebase
+git pull origin main --rebase
 echo "npm install 安装最新依赖..."
 npm install --loglevel error --prefix /scripts
 
