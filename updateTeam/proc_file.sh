@@ -13,7 +13,7 @@ function initupdateTeam() {
     git config --global user.email "$email"
     git config --global user.name "$name"
     echo -e $KEY > /root/.ssh/id_rsa
-    git pull origin master --rebase
+    git pull origin $updateTeam_BRANCH --rebase
 }
 
 if [ 0"$updateTeam_URL" = "0" ]; then
@@ -26,7 +26,7 @@ else
         cd /updateTeam
         echo "更新updateTeam仓库文件..."
         git reset --hard
-        git pull origin master --rebase
+        git pull origin $updateTeam_BRANCH --rebase
     fi
 fi
 
@@ -53,6 +53,7 @@ fi
 
 cp -rf /shareCodes /updateTeam/
 echo "提交updateTeam仓库文件..."
+cd /updateTeam
 git add -A
 git commit -m "更新JSON文件"
-git push origin master
+git push origin $updateTeam_BRANCH

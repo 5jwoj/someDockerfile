@@ -1,11 +1,11 @@
 FROM alpine
 LABEL AUTHOR="none" \
-        VERSION=0.0.1
+        VERSION=0.0.2
 
 ENV DEFAULT_LIST_FILE=crontab_list.sh \
         CUSTOM_LIST_MERGE_TYPE=append \
-        REPO_URL=https://github.com/fickgit/updateTeam \
-        REPO_BRANCH=master
+        REPO_URL=https://github.com/Aaron-lv/updateTeam \
+        REPO_BRANCH=main
     
 RUN set -ex \
         && apk update && apk upgrade \
