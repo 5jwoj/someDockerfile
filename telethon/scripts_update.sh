@@ -11,6 +11,6 @@ else
         echo "进程存在，跳过执行..."
     else
         echo "进程不存在，执行脚本..."
-        python3 /telethon/jd_zbj.py >> /logs/jd_zbj.log 2>&1
+        python3 /telethon/jd_zbj.py |ts >> /logs/jd_zbj.log 2>&1 &
     fi
 fi
