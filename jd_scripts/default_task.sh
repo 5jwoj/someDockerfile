@@ -91,7 +91,7 @@ fi
 echo "第7步判断是否开启了自动互助..."
 if [ $ENABLE_AUTO_HELP = "true" ]; then
     echo "已开启自动互助，设置互助参数中..."
-    sed -i 's/node/. \/scripts\/docker\/auto_help.sh export \&\& node/g' $mergedListFile
+    sed -i 's/node/. \/scripts\/docker\/auto_help.sh export > \/scripts\/logs\/auto_help_export.log \&\& node/g' $mergedListFile
 else
     echo "未开启自动互助，跳过设置互助参数..."
 fi
