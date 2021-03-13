@@ -21,25 +21,19 @@ cp -f /i-chenzhe/*_*.js /scripts
 
 ## 百变大咖秀
 echo "# 百变大咖秀" >> /scripts/docker/merged_list_file.sh
-echo "10 10,11 * * 1-4 node /scripts/jd_entertainment.js >> /scripts/logs/jd_entertainment.log 2>&1" >> /scripts/docker/merged_list_file.sh
+echo "0 10,11 * * 1-4 node /scripts/jd_entertainment.js >> /scripts/logs/jd_entertainment.log 2>&1" >> /scripts/docker/merged_list_file.sh
 ## 粉丝互动
 echo "# 粉丝互动" >> /scripts/docker/merged_list_file.sh
-echo "3 10 * * * node /scripts/jd_fanslove.js >> /scripts/logs/jd_fanslove.log 2>&1" >> /scripts/docker/merged_list_file.sh
-## 母婴-跳一跳
-echo "# 母婴-跳一跳" >> /scripts/docker/merged_list_file.sh
-echo "5 8,14,20 2-7 3 * node /scripts/jd_jump_jump.js >> /scripts/logs/jd_jump_jump.log 2>&1" >> /scripts/docker/merged_list_file.sh
+echo "15 10 * * * node /scripts/jd_fanslove.js >> /scripts/logs/jd_fanslove.log 2>&1" >> /scripts/docker/merged_list_file.sh
 ## 超级摇一摇
 echo "# 超级摇一摇" >> /scripts/docker/merged_list_file.sh
-echo "3 20 * * * node /scripts/jd_shake.js >> /scripts/logs/jd_shake.log 2>&1" >> /scripts/docker/merged_list_file.sh
-## 京东小魔方
-echo "# 京东小魔方" >> /scripts/docker/merged_list_file.sh
-echo "10 10 * * * node /scripts/jd_xmf.js >> /scripts/logs/jd_xmf.log 2>&1" >> /scripts/docker/merged_list_file.sh
+echo "5 20 * * * node /scripts/jd_shake.js >> /scripts/logs/jd_shake.log 2>&1" >> /scripts/docker/merged_list_file.sh
 ## 京东超市-大转盘
 echo "# 京东超市-大转盘" >> /scripts/docker/merged_list_file.sh
-echo "3 10 * * * node /scripts/z_marketLottery.js >> /scripts/logs/jd_marketLottery.log 2>&1" >> /scripts/docker/merged_list_file.sh
-## 超级品类日
-echo "# 超级品类日" >> /scripts/docker/merged_list_file.sh
-echo "13 8,10 8-15 3 * node /scripts/z_superDay.js >> /scripts/logs/jd_superDay.log 2>&1" >> /scripts/docker/merged_list_file.sh
+echo "10 10 * * * node /scripts/z_marketLottery.js >> /scripts/logs/jd_marketLottery.log 2>&1" >> /scripts/docker/merged_list_file.sh
+## 众筹许愿池
+echo "# 众筹许愿池" >> /scripts/docker/merged_list_file.sh
+echo "5 10 13-20 3 * node /scripts/z_wish.js >> /scripts/logs/jd_wish.log 2>&1" >> /scripts/docker/merged_list_file.sh
 
 ## 京东试用
 if [ $jd_try_ENABLE = "Y" ]; then
