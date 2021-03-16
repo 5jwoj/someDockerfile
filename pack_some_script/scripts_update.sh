@@ -188,7 +188,7 @@ else
     sed -i "s/CASH = process.env.QCZJ_CASH || 0;/CASH = process.env.QCZJ_CASH || 0;\n CASHTYPE = process.env.QCZJ_CASHTYPE || 3;/g" /ZIYE_JavaScript/Task/qczjspeed.js
     sed -i "s/cashtype=3/cashtype=\${CASHTYPE}/g" /ZIYE_JavaScript/Task/qczjspeed.js
     if [ 0"$QCZJ_CRON" = "0" ]; then
-        QCZJ_CRON="*/30 * * * *"
+        QCZJ_CRON="*/20 * * * *"
     fi
     echo "#汽车之家极速版" >>$mergedListFile
     echo "$QCZJ_CRON node /ZIYE_JavaScript/Task/qczjspeed.js >> /logs/qczjspeed.log 2>&1" >>$mergedListFile
@@ -249,7 +249,7 @@ if [ 0"$BBB_bububaoTOKEN" = "0" ]; then
     echo "没有配置步步宝，相关环境变量参数，跳过配置定时任务"
 else
     if [ 0"$BBB_CRON" = "0" ]; then
-        BBB_CRON="*/30 * * * *"
+        BBB_CRON="*/20 * * * *"
     fi
     echo "#步步宝" >>$mergedListFile
     echo "$BBB_CRON node /ZIYE_JavaScript/Task/bububao.js >> /logs/bububao.log 2>&1" >>$mergedListFile
@@ -260,7 +260,7 @@ if [ 0"$YDZ_yuedongzuTOKEN" = "0" ]; then
     echo "没有配置悦动族，相关环境变量参数，跳过配置定时任务"
 else
     if [ 0"$YDZ_CRON" = "0" ]; then
-        YDZ_CRON="*/30 * * * *"
+        YDZ_CRON="*/20 * * * *"
     fi
     echo "#悦动族" >>$mergedListFile
     echo "$YDZ_CRON node /ZIYE_JavaScript/Task/yuedongzu.js >> /logs/yuedongzu.log 2>&1" >>$mergedListFile
@@ -271,7 +271,7 @@ if [ 0"$QMYD_qmydTOKEN" = "0" ]; then
     echo "没有配置全民悦动，相关环境变量参数，跳过配置定时任务"
 else
     if [ 0"$QMYD_CRON" = "0" ]; then
-        QMYD_CRON="*/30 * * * *"
+        QMYD_CRON="*/20 * * * *"
     fi
     echo "#全民悦动" >>$mergedListFile
     echo "$QMYD_CRON node /ZIYE_JavaScript/Task/qmyd.js >> /logs/qmyd.log 2>&1" >>$mergedListFile
