@@ -28,6 +28,9 @@ echo "15 10 * * * node /scripts/jd_fanslove.js >> /scripts/logs/jd_fanslove.log 
 ## 超级摇一摇
 echo "# 超级摇一摇" >> /scripts/docker/merged_list_file.sh
 echo "5 20 * * * node /scripts/jd_shake.js >> /scripts/logs/jd_shake.log 2>&1" >> /scripts/docker/merged_list_file.sh
+## 京东小魔方
+echo "# 京东小魔方" >> /scripts/docker/merged_list_file.sh
+echo "8 10 16-18 * * node /scripts/jd_xmf.js >> /scripts/logs/jd_xmf.log 2>&1" >> /scripts/docker/merged_list_file.sh
 ## 京东超市-大转盘
 echo "# 京东超市-大转盘" >> /scripts/docker/merged_list_file.sh
 echo "10 10 * * * node /scripts/z_marketLottery.js >> /scripts/logs/jd_marketLottery.log 2>&1" >> /scripts/docker/merged_list_file.sh
