@@ -71,7 +71,7 @@ else
         git clone https://github.com/FKPYW/mimotion /xmSports
     else
         echo "更新xmSports脚本相关文件"
-        git -C /xmSports reset --hard
+        git -C /xmSports reset origin/main --hard
         git -C /xmSports pull origin main --rebase
     fi
     if [ 0"$XM_CRON" = "0" ]; then
@@ -90,7 +90,7 @@ else
         initxmly
     else
         echo "更新xmly_speed脚本相关文件"
-        git -C /xmly_speed reset --hard
+        git -C /xmly_speed reset origin/master --hard
         git -C /xmly_speed pull origin master --rebase
         cd /xmly_speed
         pip3 install -r requirements.txt
@@ -126,7 +126,7 @@ else
         initRead
     else
         echo "更新qqreadnode脚本相关文件"
-        git -C /qqread reset --hard
+        git -C /qqread reset origin/master --hard
         git -C /qqread pull origin master --rebase
         npm install --loglevel error --prefix /qqread
     fi
@@ -146,7 +146,7 @@ else
         inithotsoon
     else
         echo "更新hotsoon脚本相关文件"
-        git -C /hotsoon reset --hard
+        git -C /hotsoon reset origin/master --hard
         git -C /hotsoon pull origin master --rebase
         wget -O /hotsoon/package.json https://raw.githubusercontent.com/Aaron-lv/ZIYE_JavaScript/main/package.json
         npm install --loglevel error --prefix /hotsoon
@@ -168,7 +168,7 @@ else
         initziye
     else
         echo "更新ZIYE_JavaScript脚本相关文件"
-        git -C /ZIYE_JavaScript reset --hard
+        git -C /ZIYE_JavaScript reset origin/main --hard
         git -C /ZIYE_JavaScript pull origin main --rebase
         npm install --loglevel error --prefix /ZIYE_JavaScript
     fi

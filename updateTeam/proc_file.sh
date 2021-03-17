@@ -26,7 +26,7 @@ else
     else
         cd /updateTeam
         echo "更新updateTeam仓库文件..."
-        git reset --hard
+        git reset origin/$updateTeam_BRANCH --hard
         git pull origin $updateTeam_BRANCH --rebase
     fi
 fi

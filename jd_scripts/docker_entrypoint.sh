@@ -30,7 +30,7 @@ if [ ! -d "/jds/" ]; then
     initjds
 else
     echo "更新jds仓库文件..."
-    git -C /jds reset --hard
+    git -C /jds reset origin/master --hard
     git -C /jds pull origin master --rebase
 fi
 

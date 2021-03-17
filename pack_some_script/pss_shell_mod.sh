@@ -29,7 +29,7 @@ else
         initBaidu
     else
         echo "更新baidu_speed脚本相关文件"
-        git -C /baidu_speed reset --hard
+        git -C /baidu_speed reset origin/master --hard
         git -C /baidu_speed pull origin master --rebase
         npm install --loglevel error --prefix /baidu_speed
     fi

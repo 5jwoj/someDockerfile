@@ -14,8 +14,8 @@ if [ ! -d "/i-chenzhe/" ]; then
     git clone https://github.com/i-chenzhe/qx /i-chenzhe
 else
     echo "更新i-chenzhe脚本相关文件..."
-    git -C /i-chenzhe reset --hard
-    git -C /i-chenzhe pull --rebase
+    git -C /i-chenzhe reset origin/main --hard
+    git -C /i-chenzhe pull origin main --rebase
 fi
 cp -f /i-chenzhe/*_*.js /scripts
 sed -i "/^$/d" /scripts/docker/remote_crontab_list.sh
