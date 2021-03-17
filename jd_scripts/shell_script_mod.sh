@@ -18,25 +18,8 @@ else
     git -C /i-chenzhe pull --rebase
 fi
 cp -f /i-chenzhe/*_*.js /scripts
-
-## 百变大咖秀
-echo "# 百变大咖秀" >> /scripts/docker/merged_list_file.sh
-echo "0 10,11 * * 1-4 node /scripts/jd_entertainment.js >> /scripts/logs/jd_entertainment.log 2>&1" >> /scripts/docker/merged_list_file.sh
-## 粉丝互动
-echo "# 粉丝互动" >> /scripts/docker/merged_list_file.sh
-echo "15 10 * * * node /scripts/jd_fanslove.js >> /scripts/logs/jd_fanslove.log 2>&1" >> /scripts/docker/merged_list_file.sh
-## 超级摇一摇
-echo "# 超级摇一摇" >> /scripts/docker/merged_list_file.sh
-echo "5 20 * * * node /scripts/jd_shake.js >> /scripts/logs/jd_shake.log 2>&1" >> /scripts/docker/merged_list_file.sh
-## 京东小魔方
-echo "# 京东小魔方" >> /scripts/docker/merged_list_file.sh
-echo "8 10 16-18 * * node /scripts/jd_xmf.js >> /scripts/logs/jd_xmf.log 2>&1" >> /scripts/docker/merged_list_file.sh
-## 京东超市-大转盘
-echo "# 京东超市-大转盘" >> /scripts/docker/merged_list_file.sh
-echo "10 10 * * * node /scripts/z_marketLottery.js >> /scripts/logs/jd_marketLottery.log 2>&1" >> /scripts/docker/merged_list_file.sh
-## 众筹许愿池
-echo "# 众筹许愿池" >> /scripts/docker/merged_list_file.sh
-echo "5 10 13-20 3 * node /scripts/z_wish.js >> /scripts/logs/jd_wish.log 2>&1" >> /scripts/docker/merged_list_file.sh
+sed -i "/^$/d" /scripts/docker/remote_crontab_list.sh
+cat /scripts/docker/remote_crontab_list.sh >> /scripts/docker/merged_list_file.sh
 
 ## 京东试用
 if [ $jd_try_ENABLE = "Y" ]; then
