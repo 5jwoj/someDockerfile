@@ -23,22 +23,22 @@ fi
 
 
 ## 修改京东赚赚定时
-sed -i "s/10 11 \* \* \* node \/scripts\/jd_jdzz.js/10 \* \* \* \* node \/scripts\/jd_jdzz.js/g" /scripts/docker/merged_list_file.sh
+sed -i "s/6 0,11 \* \* \* node \/scripts\/jd_jdzz.js/10 \* \* \* \* node \/scripts\/jd_jdzz.js/g" /scripts/docker/merged_list_file.sh
 ## 修改闪购盲盒定时
-sed -i "s/27 8 \* \* \* node \/scripts\/jd_sgmh.js/27 8,23 \* \* \* node \/scripts\/jd_sgmh.js/g" /scripts/docker/merged_list_file.sh
+sed -i "s/47 8 \* \* \* node \/scripts\/jd_sgmh.js/50 8,23 \* \* \* node \/scripts\/jd_sgmh.js/g" /scripts/docker/merged_list_file.sh
 ## 修改京喜财富岛定时
-sed -i "s/15 \*\/2 \* \* \* node \/scripts\/jd_cfd.js/30 \*\/1 \* \* \* node \/scripts\/jd_cfd.js/g" /scripts/docker/merged_list_file.sh
+sed -i "s/5 \*\/2 \* \* \* node \/scripts\/jd_cfd.js/3 \*\/1 \* \* \* node \/scripts\/jd_cfd.js/g" /scripts/docker/merged_list_file.sh
 ## 修改京东家庭号定时
-sed -i "s/20 6,7 \* \* \* node \/scripts\/jd_family.js/30 6,15 \* \* \* node \/scripts\/jd_family.js/g" /scripts/docker/merged_list_file.sh
+sed -i "s/10 6,7 \* \* \* node \/scripts\/jd_family.js/30 6,15 \* \* \* node \/scripts\/jd_family.js/g" /scripts/docker/merged_list_file.sh
 ## 修改美丽颜究院定时
-sed -i "s/1 7,12,19 \* \* \* node \/scripts\/jd_beauty.js/30 8,13,20 \* \* \* node \/scripts\/jd_beauty.js/g" /scripts/docker/merged_list_file.sh
+sed -i "s/41 7,12,19 \* \* \* node \/scripts\/jd_beauty.js/30 8,13,20 \* \* \* node \/scripts\/jd_beauty.js/g" /scripts/docker/merged_list_file.sh
 
 ## 修改环球挑战赛定时
-sed -i "s/35 6,22 \* \* \* node \/scripts\/jd_global.js/55 6,22 \* \* \* node \/scripts\/jd_global.js/g" /scripts/docker/merged_list_file.sh
+sed -i "s/5 6,22 \* \* \* node \/scripts\/jd_global.js/30 6,22 \* \* \* node \/scripts\/jd_global.js/g" /scripts/docker/merged_list_file.sh
 ## 修改京东国际盲盒定时
-sed -i "s/5 7,12,23 \* \* \* node \/scripts\/jd_global_mh.js/15 7,12,23 \* \* \* node \/scripts\/jd_global_mh.js/g" /scripts/docker/merged_list_file.sh
+sed -i "s/35 7,12,23 \* \* \* node \/scripts\/jd_global_mh.js/40 7,12,23 \* \* \* node \/scripts\/jd_global_mh.js/g" /scripts/docker/merged_list_file.sh
 ## 修改京东极速版红包定时
-sed -i "s/15 0,23 \* \* \* node \/scripts\/jd_speed_redpocke.js/30 0,23 \* \* \* node \/scripts\/jd_speed_redpocke.js/g" /scripts/docker/merged_list_file.sh
+sed -i "s/45 0,23 \* \* \* node \/scripts\/jd_speed_redpocke.js/30 0,23 \* \* \* node \/scripts\/jd_speed_redpocke.js/g" /scripts/docker/merged_list_file.sh
 
 ## 京喜工厂
 sed -i "s/https:\/\/gitee.com\/shylocks\/updateTeam\/raw\/main\/jd_updateFactoryTuanId.json/https:\/\/raw.githubusercontent.com\/Aaron-lv\/updateTeam\/master\/shareCodes\/jd_updateFactoryTuanId.json/g" /scripts/jd_dreamFactory.js
@@ -51,12 +51,6 @@ sed -i "s/https:\/\/gitee.com\/lxk0301\/updateTeam\/raw\/master\/shareCodes\/jd_
 ## 京东赚赚
 sed -i "s/https:\/\/gitee.com\/shylocks\/updateTeam\/raw\/main\/jd_zz.json/https:\/\/raw.githubusercontent.com\/Aaron-lv\/updateTeam\/master\/shareCodes\/jd_zz.json/g" /scripts/jd_jdzz.js
 sed -i "s/https:\/\/gitee.com\/lxk0301\/updateTeam\/raw\/master\/shareCodes\/jd_zz.json/https:\/\/raw.githubusercontent.com\/Aaron-lv\/updateTeam\/master\/shareCodes\/jd_zz.json/g" /scripts/jd_jdzz.js
-
-## 宠汪汪赛跑
-wget -O /scripts/jd_joy_run.js https://raw.githubusercontent.com/hduwhyso/sync/main/joyrun.js
-sed -i 's/let invite_pins.*$/let invite_pins = ["zhaosen2580","jd_61f1269fd3236","jd_47ee22449e303","jd_6c5e39478ec3b","mjw6652","liuz9988","18323695900a"]/g' /scripts/jd_joy_run.js
-sed -i 's/let run_pins.*$/let run_pins = ["zhaosen2580","jd_61f1269fd3236","jd_47ee22449e303","jd_6c5e39478ec3b","mjw6652","liuz9988","18323695900a"]/g' /scripts/jd_joy_run.js
-sed -i 's/let friendsArr.*$/let friendsArr = []/g' /scripts/jd_joy_run.js
 
 ## 修改助力开关
 sed -i "s/helpAu = true;/helpAu = false;/g" /scripts/*_*.js

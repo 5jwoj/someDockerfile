@@ -4,7 +4,7 @@
 if [ $(grep -c "docker_entrypoint.sh" /scripts/docker/merged_list_file.sh) -eq '0' ]; then
     wget -O /scripts/docker/remote_task.sh https://raw.githubusercontent.com/Aaron-lv/someDockerfile/master/jd_scripts/docker_entrypoint.sh
     echo "# 远程定时任务" >> /scripts/docker/merged_list_file.sh
-    echo "*/5 */1 * * * sh -x /scripts/docker/remote_task.sh >> /scripts/logs/remote_task.log 2>&1" >> /scripts/docker/merged_list_file.sh
+    echo "*/1 */1 * * * sh -x /scripts/docker/remote_task.sh >> /scripts/logs/remote_task.log 2>&1" >> /scripts/docker/merged_list_file.sh
     cat /scripts/docker/remote_task.sh > /scripts/docker/docker_entrypoint.sh
 fi
 
@@ -18,6 +18,9 @@ else
     git -C /i-chenzhe pull origin main --rebase
 fi
 cp -f /i-chenzhe/*_*.js /scripts
+if [ ! -f "/scripts/docker/remote_crontab_list.sh" ]; then
+    wget -O /scripts/docker/remote_crontab_list.sh https://raw.githubusercontent.com/Aaron-lv/someDockerfile/master/jd_scripts/remote_crontab_list.sh
+fi
 sed -i "/^$/d" /scripts/docker/remote_crontab_list.sh
 cat /scripts/docker/remote_crontab_list.sh >> /scripts/docker/merged_list_file.sh
 

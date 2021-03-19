@@ -16,6 +16,9 @@
 # 京东超市-大转盘
 10 10 * * * node /scripts/z_marketLottery.js >> /scripts/logs/jd_marketLottery.log 2>&1
 
+# 金口碑奖投票
+3 10 * 3 * node /scripts/z_mgold.js >> /scripts/logs/jd_mgold.log 2>&1
+
 # 母婴-跳一跳
 10 8,14,20 17-25 3 * node /scripts/z_mother_jump.js >> /scripts/logs/jd_mother_jump.log 2>&1
 
