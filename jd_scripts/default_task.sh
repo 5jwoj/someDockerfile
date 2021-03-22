@@ -3,6 +3,7 @@ set -e
 
 function initPythonEnv() {
     echo "开始安装运行jd_bot需要的python环境及依赖..."
+    sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories
     apk add --update python3-dev py3-pip py3-cryptography py3-numpy py-pillow
     echo "开始安装jd_bot依赖..."
     cd /scripts/docker/bot
@@ -48,15 +49,15 @@ EOF
     echo "spnode需要使用的到，cookie写入文件，该文件同时也为jd_bot扫码获自动取cookies服务"
     if [ -z "$JD_COOKIE" ]; then
         if [ ! -f "$COOKIES_LIST" ]; then
-        echo "" > $COOKIES_LIST
-        echo "未配置JD_COOKIE环境变量，$COOKIES_LIST文件已生成,请将cookies写入$COOKIES_LIST文件，格式每个Cookie一行"
+            echo "" > $COOKIES_LIST
+            echo "未配置JD_COOKIE环境变量，$COOKIES_LIST文件已生成,请将cookies写入$COOKIES_LIST文件，格式每个Cookie一行"
         fi
     else
         if [ -f "$COOKIES_LIST" ]; then
-        echo "cookies.conf文件已经存在跳过,如果需要更新cookie请修改$COOKIES_LIST文件内容"
+            echo "cookies.conf文件已经存在跳过,如果需要更新cookie请修改$COOKIES_LIST文件内容"
         else
-        echo "环境变量 cookies写入$COOKIES_LIST文件,如果需要更新cookie请修改cookies.conf文件内容"
-        echo $JD_COOKIE | sed "s/\( &\|&\)/\\n/g" >$COOKIES_LIST
+            echo "环境变量 cookies写入$COOKIES_LIST文件,如果需要更新cookie请修改cookies.conf文件内容"
+            echo $JD_COOKIE | sed "s/[ &]/\\n/g" | sed "/^$/d" >$COOKIES_LIST
         fi
     fi
 
@@ -103,7 +104,8 @@ EOF
     fi
 
     echo "容器jd_bot交互所需环境已配置安装已完成..."
-    curl -sX POST "https://api.telegram.org/bot$TG_BOT_TOKEN/sendMessage" -d "chat_id=$TG_USER_ID&text=恭喜🎉你获得feature\n容器jd_bot交互所需环境已配置安装已完成，并启用。请发送 /help 查看使用帮助。如需禁用请在 docker-compose.yml配置 DISABLE_BOT_COMMAND=True" >>/dev/null
+    line=$'\n\n'
+    curl -sX POST "https://api.telegram.org/bot$TG_BOT_TOKEN/sendMessage" -d "chat_id=$TG_USER_ID&text=恭喜🎉你获得feature$line容器jd_bot交互所需环境已配置安装已完成，并启用。请发送 /help 查看使用帮助。如需禁用请在 docker-compose.yml配置 DISABLE_BOT_COMMAND=True" >>/dev/null
 
 fi
 
@@ -215,7 +217,7 @@ echo "第9步增加 |ts 任务日志输出时间戳..."
 sed -i "/\( ts\| |ts\|| ts\)/!s/>>/\|ts >>/g" $mergedListFile
 
 echo "第10步加载最新的定时任务文件..."
-if [[ "$1" == "True" && -z "$DISABLE_SPNODE" ]]; then
+if [[ -f /usr/bin/jd_bot && -z "$DISABLE_SPNODE" ]]; then
     echo "bot交互与spnode前置条件成立，替换任务列表的node指令为spnode"
     sed -i "s/ node / spnode /g" $mergedListFile
     sed -i "/jd_blueCoin.js\|jd_joy_reward.js\|jd_car_exchange.js/s/spnode/spnode conc/g" $mergedListFile
