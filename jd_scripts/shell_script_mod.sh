@@ -18,11 +18,8 @@ else
     git -C /i-chenzhe pull origin main --rebase
 fi
 cp -f /i-chenzhe/*_*.js /scripts
-if [ ! -f "/scripts/docker/remote_crontab_list.sh" ]; then
-    wget -O /scripts/docker/remote_crontab_list.sh https://raw.githubusercontent.com/Aaron-lv/someDockerfile/master/jd_scripts/remote_crontab_list.sh
-fi
-sed -i "/^$/d" /scripts/docker/remote_crontab_list.sh
-cat /scripts/docker/remote_crontab_list.sh >> /scripts/docker/merged_list_file.sh
+sed -i "/^$/d" /i-chenzhe/remote_crontab_list.sh
+cat /i-chenzhe/remote_crontab_list.sh >> /scripts/docker/merged_list_file.sh
 
 ## 京东试用
 if [ $jd_try_ENABLE = "Y" ]; then
