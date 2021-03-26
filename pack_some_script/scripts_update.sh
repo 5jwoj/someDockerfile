@@ -198,7 +198,6 @@ fi
 if [ 0"$XP_refreshTOKEN" = "0" ]; then
     echo "没有配置笑谱，相关环境变量参数，跳过配置定时任务"
 else
-    sed -i "s/livecs < 20/livecs <= 20/g" /ZIYE_JavaScript/Task/iboxpay.js
     sed -i "s/notifyttt == 1.*$/notifyttt == 1 \&\& \$.isNode() \&\& (nowTimes.getHours() === 12 || nowTimes.getHours() === 22) \&\& (nowTimes.getMinutes() >= 0 \&\& nowTimes.getMinutes() <= 10))/g" /ZIYE_JavaScript/Task/iboxpay.js
     if [ 0"$XP_CRON" = "0" ]; then
         XP_CRON="*/30 9-22/1 * * *"
