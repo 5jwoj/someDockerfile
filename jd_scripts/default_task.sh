@@ -190,7 +190,7 @@ echo "第6步判断是否配置了随即延迟参数..."
 if [ $RANDOM_DELAY_MAX ]; then
     if [ $RANDOM_DELAY_MAX -ge 1 ]; then
         echo "已设置随机延迟为 $RANDOM_DELAY_MAX , 设置延迟任务中..."
-        sed -i "/jd_bean_sign.js\|jd_blueCoin.js\|jd_joy_reward.js\|jd_joy_steal.js\|jd_joy_feedPets.js\|jd_car.js\|jd_car_exchange.js\|jd_live_redrain.js\|jd_live.js/!s/node/sleep \$((RANDOM % \$RANDOM_DELAY_MAX)); node/g" $mergedListFile
+        sed -i "/jd_bean_sign.js\|jd_blueCoin.js\|jd_joy_reward.js\|jd_joy_steal.js\|jd_joy_feedPets.js\|jd_car.js\|jd_car_exchange.js/!s/node/sleep \$((RANDOM % \$RANDOM_DELAY_MAX)); node/g" $mergedListFile
     fi
 else
     echo "未配置随即延迟对应的环境变量，故不设置延迟任务..."
@@ -199,7 +199,7 @@ fi
 echo "第7步判断是否开启了自动互助..."
 if [ $ENABLE_AUTO_HELP = "true" ]; then
     echo "已开启自动互助，设置互助参数中..."
-    sed -i 's/node/. \/scripts\/docker\/auto_help.sh export > \/scripts\/logs\/auto_help_export.log \&\& node/g' $mergedListFile
+    sed -i "/jd_fruit.js\|jd_pet.js\|jd_plantBean.js\|jd_dreamFactory.js\|jd_jdfactory.js\|jd_crazy_joy.js\|jd_cfd.js\|jd_jxnc.js\|jd_jdzz.js\|jd_bookshop.js\|jd_sgmh.js\|jd_global.js/s/node/. \/scripts\/docker\/auto_help.sh export > \/scripts\/logs\/auto_help_export.log \&\& node/g" $mergedListFile
 else
     echo "未开启自动互助，跳过设置互助参数..."
 fi

@@ -2,9 +2,9 @@
 
 
 if [[ -f /usr/bin/jd_bot && -z "$DISABLE_SPNODE" ]]; then
-   CMD=spnode
+   CMD="spnode"
 else
-   CMD=node
+   CMD="node"
 fi
 
 echo "处理jd_crazy_joy_coin任务..."
@@ -32,12 +32,14 @@ fi
 sed -i "s/6 0,11 \* \* \* node \/scripts\/jd_jdzz.js/10 \* \* \* \* node \/scripts\/jd_jdzz.js/g" /scripts/docker/merged_list_file.sh
 ## 修改闪购盲盒定时
 sed -i "s/47 8 \* \* \* node \/scripts\/jd_sgmh.js/50 8,23 \* \* \* node \/scripts\/jd_sgmh.js/g" /scripts/docker/merged_list_file.sh
-## 修改京喜财富岛定时
-sed -i "s/5 \*\/2 \* \* \* node \/scripts\/jd_cfd.js/3 \*\/1 \* \* \* node \/scripts\/jd_cfd.js/g" /scripts/docker/merged_list_file.sh
 ## 修改京东家庭号定时
 sed -i "s/10 6,7 \* \* \* node \/scripts\/jd_family.js/30 6,15 \* \* \* node \/scripts\/jd_family.js/g" /scripts/docker/merged_list_file.sh
 ## 修改美丽颜究院定时
 sed -i "s/41 7,12,19 \* \* \* node \/scripts\/jd_beauty.js/30 8,13,20 \* \* \* node \/scripts\/jd_beauty.js/g" /scripts/docker/merged_list_file.sh
+## 修改摇京豆定时
+sed -i "s/6 0,23 \* \* \* node \/scripts\/jd_club_lottery.js/5 0,20,23 \* \* \* node \/scripts\/jd_club_lottery.js/g" /scripts/docker/merged_list_file.sh
+## 修改超级直播间红包雨定时
+sed -i "s/30,31 20-23\/1 \* \* \* node \/scripts\/jd_live_redrain.js/0,30 20-23\/1 \* \* \* node \/scripts\/jd_live_redrain.js/g" /scripts/docker/merged_list_file.sh
 
 ## 修改环球挑战赛定时
 sed -i "s/5 6,22 \* \* \* node \/scripts\/jd_global.js/30 6,22 \* \* \* node \/scripts\/jd_global.js/g" /scripts/docker/merged_list_file.sh
@@ -47,6 +49,7 @@ sed -i "s/35 7,12,23 \* \* \* node \/scripts\/jd_global_mh.js/40 7,12,23 \* \* \
 sed -i "s/45 0,23 \* \* \* node \/scripts\/jd_speed_redpocke.js/30 0,23 \* \* \* node \/scripts\/jd_speed_redpocke.js/g" /scripts/docker/merged_list_file.sh
 
 ## 京喜工厂
+sed -i "s/if (cookiesArr \&\& cookiesArr.length < 2) return/if (cookiesArr \&\& cookiesArr.length < 6) return/g" /scripts/jd_dreamFactory.js
 sed -i "s/https:\/\/gitee.com\/shylocks\/updateTeam\/raw\/main\/jd_updateFactoryTuanId.json/https:\/\/raw.githubusercontent.com\/Aaron-lv\/updateTeam\/master\/shareCodes\/jd_updateFactoryTuanId.json/g" /scripts/jd_dreamFactory.js
 sed -i "s/https:\/\/raw.githubusercontent.com\/LXK9301\/updateTeam\/master\/jd_updateFactoryTuanId.json/https:\/\/raw.githubusercontent.com\/Aaron-lv\/updateTeam\/master\/shareCodes\/jd_updateFactoryTuanId.json/g" /scripts/jd_dreamFactory.js
 sed -i "s/https:\/\/gitee.com\/lxk0301\/updateTeam\/raw\/master\/shareCodes\/jd_updateFactoryTuanId.json/https:\/\/raw.githubusercontent.com\/Aaron-lv\/updateTeam\/master\/shareCodes\/jd_updateFactoryTuanId.json/g" /scripts/jd_dreamFactory.js
@@ -57,7 +60,3 @@ sed -i "s/https:\/\/gitee.com\/lxk0301\/updateTeam\/raw\/master\/shareCodes\/jd_
 ## 京东赚赚
 sed -i "s/https:\/\/gitee.com\/shylocks\/updateTeam\/raw\/main\/jd_zz.json/https:\/\/raw.githubusercontent.com\/Aaron-lv\/updateTeam\/master\/shareCodes\/jd_zz.json/g" /scripts/jd_jdzz.js
 sed -i "s/https:\/\/gitee.com\/lxk0301\/updateTeam\/raw\/master\/shareCodes\/jd_zz.json/https:\/\/raw.githubusercontent.com\/Aaron-lv\/updateTeam\/master\/shareCodes\/jd_zz.json/g" /scripts/jd_jdzz.js
-
-## 修改助力开关
-sed -i "s/helpAu = true;/helpAu = false;/g" /scripts/*_*.js
-sed -i "s/helpAuthor = true;/helpAuthor = false;/g" /scripts/*_*.js
