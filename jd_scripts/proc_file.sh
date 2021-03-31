@@ -38,8 +38,6 @@ sed -i "s/10 6,7 \* \* \* node \/scripts\/jd_family.js/30 6,15 \* \* \* node \/s
 sed -i "s/41 7,12,19 \* \* \* node \/scripts\/jd_beauty.js/30 8,13,20 \* \* \* node \/scripts\/jd_beauty.js/g" /scripts/docker/merged_list_file.sh
 ## 修改摇京豆定时
 sed -i "s/6 0,23 \* \* \* node \/scripts\/jd_club_lottery.js/5 0,20,23 \* \* \* node \/scripts\/jd_club_lottery.js/g" /scripts/docker/merged_list_file.sh
-## 修改超级直播间红包雨定时
-sed -i "s/30,31 20-23\/1 \* \* \* node \/scripts\/jd_live_redrain.js/0,30 20-23\/1 \* \* \* node \/scripts\/jd_live_redrain.js/g" /scripts/docker/merged_list_file.sh
 
 ## 修改环球挑战赛定时
 sed -i "s/5 6,22 \* \* \* node \/scripts\/jd_global.js/30 6,22 \* \* \* node \/scripts\/jd_global.js/g" /scripts/docker/merged_list_file.sh
