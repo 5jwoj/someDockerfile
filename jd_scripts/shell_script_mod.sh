@@ -12,10 +12,10 @@ fi
 
 # 克隆monk-coder仓库
 if [ ! -d "/monk-coder/" ]; then
-    echo "未检查到i-chenzhe仓库脚本，初始化下载相关脚本..."
+    echo "未检查到monk-coder仓库脚本，初始化下载相关脚本..."
     git clone https://github.com/monk-coder/dust /monk-coder
 else
-    echo "更新i-chenzhe脚本相关文件..."
+    echo "更新monk-coder脚本相关文件..."
     git -C /monk-coder reset origin/dust --hard
     git -C /monk-coder pull origin dust --rebase
 fi
