@@ -199,7 +199,7 @@ fi
 echo "第7步判断是否开启了自动互助..."
 if [ $ENABLE_AUTO_HELP = "true" ]; then
     echo "已开启自动互助，设置互助参数中..."
-    sed -i "/jd_fruit.js\|jd_pet.js\|jd_plantBean.js\|jd_dreamFactory.js\|jd_jdfactory.js\|jd_crazy_joy.js\|jd_cfd.js\|jd_jxnc.js\|jd_jdzz.js\|jd_bookshop.js\|jd_sgmh.js\|jd_global.js/s/node/. \/scripts\/docker\/auto_help.sh export > \/scripts\/logs\/auto_help_export.log \&\& node/g" $mergedListFile
+    sed -i "/jd_fruit.js\|jd_pet.js\|jd_plantBean.js\|jd_dreamFactory.js\|jd_jdfactory.js\|jd_crazy_joy.js\|jd_cfd.js\|jd_jxnc.js\|jd_jdzz.js\|jd_bookshop.js\|jd_cash.js\|jd_sgmh.js\|jd_global.js/s/node/. \/scripts\/docker\/auto_help.sh export > \/scripts\/logs\/auto_help_export.log \&\& node/g" $mergedListFile
 else
     echo "未开启自动互助，跳过设置互助参数..."
 fi

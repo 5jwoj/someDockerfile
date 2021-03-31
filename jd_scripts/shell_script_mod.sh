@@ -19,6 +19,7 @@ else
     git -C /monk-coder reset origin/dust --hard
     git -C /monk-coder pull origin dust --rebase
 fi
+cp -f /monk-coder/car/*_*.js /scripts
 cp -f /monk-coder/i-chenzhe/*_*.js /scripts
 cp -f /monk-coder/normal/*_*.js /scripts
 wget -O $remoteListFile https://raw.githubusercontent.com/Aaron-lv/someDockerfile/master/jd_scripts/remote_crontab_list.sh
