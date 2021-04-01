@@ -199,7 +199,7 @@ fi
 echo "第7步判断是否开启了自动互助..."
 if [ $ENABLE_AUTO_HELP = "true" ]; then
     echo "已开启自动互助，设置互助参数中..."
-    sed -i "/jd_fruit.js\|jd_pet.js\|jd_plantBean.js\|jd_dreamFactory.js\|jd_jdfactory.js\|jd_crazy_joy.js\|jd_cfd.js\|jd_jxnc.js\|jd_jdzz.js\|jd_bookshop.js\|jd_cash.js\|jd_sgmh.js\|jd_global.js/s/node/. \/scripts\/docker\/auto_help.sh export > \/scripts\/logs\/auto_help_export.log \&\& node/g" $mergedListFile
+    sed -i "/jd_fruit.js\|jd_pet.js\|jd_plantBean.js\|jd_dreamFactory.js\|jd_jdfactory.js\|jd_crazy_joy.js\|jd_cfd.js\|jd_jxnc.js\|jd_jdzz.js\|jd_bookshop.js\|jd_cash.js\|jd_sgmh.js\|jd_carnivalcity.js/s/node/. \/scripts\/docker\/auto_help.sh export > \/scripts\/logs\/auto_help_export.log \&\& node/g" $mergedListFile
 else
     echo "未开启自动互助，跳过设置互助参数..."
 fi
@@ -220,7 +220,7 @@ echo "第10步加载最新的定时任务文件..."
 if [[ -f /usr/bin/jd_bot && -z "$DISABLE_SPNODE" ]]; then
     echo "bot交互与spnode前置条件成立，替换任务列表的node指令为spnode"
     sed -i "s/ node / spnode /g" $mergedListFile
-    sed -i "/jd_blueCoin.js\|jd_joy_reward.js\|jd_car_exchange.js/s/spnode/spnode conc/g" $mergedListFile
+    sed -i "/jd_blueCoin.js\|jd_joy_reward.js\|jd_car_exchange.js\|jd_carnivalcity.js/s/spnode/spnode conc/g" $mergedListFile
 fi
 crontab $mergedListFile
 
