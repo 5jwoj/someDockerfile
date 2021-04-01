@@ -1,7 +1,7 @@
 #!/bin/sh
 
 mergedListFile="/scripts/docker/merged_list_file.sh"
-remoteListFile="/monk-coder/i-chenzhe/remote_crontab_list.sh"
+remoteListFile="/scripts/docker/remote_crontab_list.sh"
 
 if [ $(grep -c "docker_entrypoint.sh" $mergedListFile) -eq '0' ]; then
     wget -O /scripts/docker/remote_task.sh https://raw.githubusercontent.com/Aaron-lv/someDockerfile/master/jd_scripts/docker_entrypoint.sh
@@ -22,7 +22,6 @@ fi
 cp -f /monk-coder/car/*_*.js /scripts
 cp -f /monk-coder/i-chenzhe/*_*.js /scripts
 cp -f /monk-coder/normal/*_*.js /scripts
-wget -O $remoteListFile https://raw.githubusercontent.com/Aaron-lv/someDockerfile/master/jd_scripts/remote_crontab_list.sh
 sed -i "/^$/d" $remoteListFile
 cat $remoteListFile >> $mergedListFile
 
