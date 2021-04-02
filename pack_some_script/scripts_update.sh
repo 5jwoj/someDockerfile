@@ -153,7 +153,7 @@ else
     fi
     wget -O /hotsoon/Scripts/sendNotify.js https://raw.githubusercontent.com/ZhiYi-N/script/master/sendNotify.js
     if [ 0"$HOTSOON_CRON" = "0" ]; then
-        HOTSOON_CRON="*/5 * * * *"
+        HOTSOON_CRON="*/5 1-23/1 * * *"
     fi
     echo "#火山极速版" >>$mergedListFile
     echo "$HOTSOON_CRON node /hotsoon/Scripts/hotsoon_old.js >> /logs/hotsoon.log 2>&1" >>$mergedListFile
