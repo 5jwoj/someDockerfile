@@ -4,6 +4,7 @@ mergedListFile="/scripts/docker/merged_list_file.sh"
 remoteListFile="/scripts/docker/remote_crontab_list.sh"
 
 if [ $(grep -c "docker_entrypoint.sh" $mergedListFile) -eq '0' ]; then
+    wget -O $remoteListFile https://raw.githubusercontent.com/Aaron-lv/someDockerfile/master/jd_scripts/remote_crontab_list.sh
     wget -O /scripts/docker/remote_task.sh https://raw.githubusercontent.com/Aaron-lv/someDockerfile/master/jd_scripts/docker_entrypoint.sh
     echo "# 远程定时任务" >> $mergedListFile
     echo "*/1 */1 * * * sh -x /scripts/docker/remote_task.sh >> /scripts/logs/remote_task.log 2>&1" >> $mergedListFile
@@ -21,6 +22,7 @@ else
 fi
 cp -f /monk-coder/car/*_*.js /scripts
 cp -f /monk-coder/i-chenzhe/*_*.js /scripts
+cp -f /monk-coder/member/*_*.js /scripts
 cp -f /monk-coder/normal/*_*.js /scripts
 sed -i "/^$/d" $remoteListFile
 cat $remoteListFile >> $mergedListFile

@@ -11,10 +11,13 @@
 10 8,14,20 25-31 3 * node /scripts/z_mother_jump.js >> /scripts/logs/z_mother_jump.log 2>&1
 
 # 京东小魔方
-10 10 1-3 4 * node /scripts/z_xmf.js >> /scripts/logs/z_xmf.log 2>&1
+10 10 4-6 4 * node /scripts/z_xmf.js >> /scripts/logs/z_xmf.log 2>&1
 
 # 店铺加购有礼
 15 12 * * * node /scripts/monk_shop_add_to_car.js >> /scripts/logs/monk_shop_add_to_car.log 2>&1
+
+# 有机牧场
+0 0,1-22/2 * 4-7 * node /scripts/monk_pasture.js >> /scripts/logs/monk_pasture.log 2>&1
 
 # interCenter渠道店铺签到
 0 0 * * * node /scripts/monk_inter_shop_sign.js >> /scripts/logs/monk_inter_shop_sign.log 2>&1
