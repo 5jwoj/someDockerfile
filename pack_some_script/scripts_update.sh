@@ -218,20 +218,6 @@ else
     echo "$FL_CRON node /ZIYE_JavaScript/Task/flw.js >> /logs/flw.log 2>&1" >>$mergedListFile
 fi
 
-##判断多看点相关变量存在，才会更新相关任务脚本
-if [ 0"$DKD_duokandianBODY" = "0" ]; then
-    echo "没有配置多看点，相关环境变量参数，跳过配置定时任务"
-else
-    sed -i "s/CASH = ''/CASH = '', CASHTYPE = ''/g" /ZIYE_JavaScript/Task//duokandian.js
-    sed -i "s/CASH = process.env.DKD_duokandianCASH || 0;/CASH = process.env.DKD_duokandianCASH || 0;\n    CASHTYPE = process.env.DKD_duokandianCASHTYPE || 2;/g" /ZIYE_JavaScript/Task//duokandian.js
-    sed -i 's/"type":2/"type":${CASHTYPE}/g' /ZIYE_JavaScript/Task//duokandian.js
-    if [ 0"$DKD_CRON" = "0" ]; then
-        DKD_CRON="0 8-23/1 * * *"
-    fi
-    echo "#多看点" >>$mergedListFile
-    echo "$DKD_CRON node /ZIYE_JavaScript/Task/duokandian.js >> /logs/duokandian.log 2>&1" >>$mergedListFile
-fi
-
 ##判断芝嫲视频相关变量存在，才会更新相关任务脚本
 if [ 0"$ZM_zhimabody" = "0" ]; then
     echo "没有配置芝嫲视频，相关环境变量参数，跳过配置定时任务"
@@ -274,4 +260,15 @@ else
     fi
     echo "#全民悦动" >>$mergedListFile
     echo "$QMYD_CRON node /ZIYE_JavaScript/Task/qmyd.js >> /logs/qmyd.log 2>&1" >>$mergedListFile
+fi
+
+##判断多多爱运动相关变量存在，才会更新相关任务脚本
+if [ 0"$DDAYD_ddaydCK" = "0" ]; then
+    echo "没有配置多多爱运动，相关环境变量参数，跳过配置定时任务"
+else
+    if [ 0"$DDAYD_CRON" = "0" ]; then
+        DDAYD_CRON="10 * * * *"
+    fi
+    echo "#多多爱运动" >>$mergedListFile
+    echo "$DDAYD_CRON node /ZIYE_JavaScript/Task/ddayd.js >> /logs/ddayd.log 2>&1" >>$mergedListFile
 fi
