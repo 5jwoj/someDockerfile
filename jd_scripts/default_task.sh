@@ -220,7 +220,7 @@ echo "第10步加载最新的定时任务文件..."
 if [[ -f /usr/bin/jd_bot && -z "$DISABLE_SPNODE" ]]; then
     echo "bot交互与spnode前置条件成立，替换任务列表的node指令为spnode"
     sed -i "s/ node / spnode /g" $mergedListFile
-    sed -i "/jd_blueCoin.js\|jd_joy_reward.js\|jd_car_exchange.js\|jd_carnivalcity.js/s/spnode/spnode conc/g" $mergedListFile
+    sed -i "/jd_blueCoin.js\|jd_joy_reward.js\|jd_car_exchange.js/s/spnode/spnode conc/g" $mergedListFile
 fi
 crontab $mergedListFile
 
