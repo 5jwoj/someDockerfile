@@ -8,13 +8,19 @@
 10 10 * * * node /scripts/z_marketLottery.js >> /scripts/logs/z_marketLottery.log 2>&1
 
 # 母婴-跳一跳
-10 8,14,20 25-31 3 * node /scripts/z_mother_jump.js >> /scripts/logs/z_mother_jump.log 2>&1
+5 8,14,20 6-13 4 * node /scripts/z_mother_jump.js >> /scripts/logs/z_mother_jump.log 2>&1
 
 # 京东小魔方
 10 10 4-6 4 * node /scripts/z_xmf.js >> /scripts/logs/z_xmf.log 2>&1
 
+# 超级摇一摇
+3 20 * * * node /scripts/z_shake.js >> /scripts/logs/z_shake.log 2>&1
+
 # 店铺加购有礼
 15 12 * * * node /scripts/monk_shop_add_to_car.js >> /scripts/logs/monk_shop_add_to_car.log 2>&1
+
+# 下班全勤奖
+15 8 2-18 4 * node /scripts/monk_skyworth_car.js >> /scripts/logs/monk_skyworth_car.log 2>&1
 
 # 有机牧场
 0 0,1-22/2 * 4-7 * node /scripts/monk_pasture.js >> /scripts/logs/monk_pasture.log 2>&1
