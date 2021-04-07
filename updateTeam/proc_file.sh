@@ -35,21 +35,35 @@ fi
 if [ $jd_jxFactoryCreateTuan_ENABLE = "Y" ]; then
     sed -i "s/.\/shareCodes/\/shareCodes/g" /scripts/jd_jxFactoryCreateTuan.js
     echo "# 京喜工厂自动开团" >> $mergedListFile
-    echo "0 */1 * * * node /scripts/jd_jxFactoryCreateTuan.js >> /scripts/logs/jd_jxFactoryCreateTuan.log 2>&1" >> $mergedListFile
+    echo "0 * * * * node /scripts/jd_jxFactoryCreateTuan.js >> /scripts/logs/jd_jxFactoryCreateTuan.log 2>&1" >> $mergedListFile
+fi
+
+##更新抢京豆邀请码
+if [ $jd_updateBeanHome_ENABLE = "Y" ]; then
+    sed -i "s/.\/shareCodes/\/shareCodes/g" /scripts/jd_updateBeanHome.js
+    echo "# 更新抢京豆邀请码" >> $mergedListFile
+    echo "0 * * * * node /scripts/jd_updateBeanHome.js >> /scripts/logs/jd_updateBeanHome.log 2>&1" >> $mergedListFile
 fi
 
 ##京东签到领现金
 if [ $jd_updateCash_ENABLE = "Y" ]; then
     sed -i "s/.\/shareCodes/\/shareCodes/g" /scripts/jd_updateCash.js
     echo "# 京东签到领现金" >> $mergedListFile
-    echo "0 */1 * * * node /scripts/jd_updateCash.js >> /scripts/logs/jd_updateCash.log 2>&1" >> $mergedListFile
+    echo "0 * * * * node /scripts/jd_updateCash.js >> /scripts/logs/jd_updateCash.log 2>&1" >> $mergedListFile
+fi
+
+##更新东东小窝邀请码
+if [ $jd_update_home_ENABLE = "Y" ]; then
+    sed -i "s/.\/shareCodes/\/shareCodes/g" /scripts/jd_update_home.js
+    echo "# 更新东东小窝邀请码" >> $mergedListFile
+    echo "0 * * * * node /scripts/jd_update_home.js >> /scripts/logs/jd_update_home.log 2>&1" >> $mergedListFile
 fi
 
 ##赚京豆小程序
 if [ $jd_zzUpdate_ENABLE = "Y" ]; then
     sed -i "s/.\/shareCodes/\/shareCodes/g" /scripts/jd_zzUpdate.js
     echo "# 赚京豆小程序" >> $mergedListFile
-    echo "0 */1 * * * node /scripts/jd_zzUpdate.js >> /scripts/logs/jd_zzUpdate.log 2>&1" >> $mergedListFile
+    echo "0 * * * * node /scripts/jd_zzUpdate.js >> /scripts/logs/jd_zzUpdate.log 2>&1" >> $mergedListFile
 fi
 
 cp -rf /shareCodes /updateTeam/
