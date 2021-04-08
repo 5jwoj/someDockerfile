@@ -75,28 +75,26 @@ EOF
 #每天变化活动示例
 #daily-@TuringLabbot-jd_818.log-818-暂无
 
+#长期活动
 #种豆得豆
 long-@TuringLabbot-/submit_activity_codes-jd_plantBean.log-bean-种豆得豆好友互助码】
-#京东农场
+#东东农场
 long-@TuringLabbot-/submit_activity_codes-jd_fruit.log-farm-东东农场好友互助码】
-#京东萌宠
+#东东萌宠
 long-@TuringLabbot-/submit_activity_codes-jd_pet.log-pet-东东萌宠好友互助码】
 #东东工厂
 long-@TuringLabbot-/submit_activity_codes-jd_jdfactory.log-ddfactory-东东工厂好友互助码】
 #京喜工厂
 long-@TuringLabbot-/submit_activity_codes-jd_dreamFactory.log-jxfactory-京喜工厂好友互助码】
-#临时活动
-temp-@TuringLabbot-/submit_activity_codes-jd_sgmh.log-sgmh-您的好友助力码为:
-#临时活动
-temp-@TuringLabbot-/submit_activity_codes-jd_cfd.log-jxcfd-主】你的互助码:
-temp-@TuringLabbot-/submit_activity_codes-jd_global.log-jdglobal-好友助力码为
-
-#分红狗活动
+#疯狂的JOY
 long-@LvanLamCommitCodeBot-/jdcrazyjoy-jd_crazy_joy.log-@N-crazyJoy任务好友互助码】
 #签到领现金
-long-@LvanLamCommitCodeBot-/jdcash-jd_cash.log-@N-您的助力码为
+long-@LvanLamCommitCodeBot-/jdcash-jd_cash.log-@N-签到领现金好友互助码】
 #京东赚赚
 long-@LvanLamCommitCodeBot-/jdzz-jd_jdzz.log-@N-京东赚赚好友互助码】
+
+#临时活动
+temp-@TuringLabbot-/submit_activity_codes-jd_sgmh.log-sgmh-闪购盲盒好友互助码】
 EOF
         ) >$CODE_GEN_CONF
     else
@@ -190,7 +188,7 @@ echo "第6步判断是否配置了随即延迟参数..."
 if [ $RANDOM_DELAY_MAX ]; then
     if [ $RANDOM_DELAY_MAX -ge 1 ]; then
         echo "已设置随机延迟为 $RANDOM_DELAY_MAX , 设置延迟任务中..."
-        sed -i "/jd_bean_sign.js\|jd_blueCoin.js\|jd_joy_reward.js\|jd_joy_steal.js\|jd_joy_feedPets.js\|jd_car.js\|jd_car_exchange.js/!s/node/sleep \$((RANDOM % \$RANDOM_DELAY_MAX)); node/g" $mergedListFile
+        sed -i "/jd_bean_sign.js\|jd_blueCoin.js\|jd_joy_reward.js\|jd_joy_steal.js\|jd_joy_feedPets.js\|jd_car.js\|jd_car_exchange.js\|jd_carnivalcity.js/!s/node/sleep \$((RANDOM % \$RANDOM_DELAY_MAX)); node/g" $mergedListFile
     fi
 else
     echo "未配置随即延迟对应的环境变量，故不设置延迟任务..."
@@ -220,7 +218,7 @@ echo "第10步加载最新的定时任务文件..."
 if [[ -f /usr/bin/jd_bot && -z "$DISABLE_SPNODE" ]]; then
     echo "bot交互与spnode前置条件成立，替换任务列表的node指令为spnode"
     sed -i "s/ node / spnode /g" $mergedListFile
-    sed -i "/jd_blueCoin.js\|jd_joy_reward.js\|jd_car_exchange.js/s/spnode/spnode conc/g" $mergedListFile
+    sed -i "/jd_blueCoin.js\|jd_joy_reward.js\|jd_car_exchange.js\|jd_carnivalcity.js/s/spnode/spnode conc/g" $mergedListFile
 fi
 crontab $mergedListFile
 
