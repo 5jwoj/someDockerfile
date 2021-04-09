@@ -13,9 +13,6 @@
 # 京东小魔方
 10 10 7-9 4 * node /scripts/z_xmf.js >> /scripts/logs/z_xmf.log 2>&1
 
-# 超级摇一摇
-3 20 * * * node /scripts/z_shake.js >> /scripts/logs/z_shake.log 2>&1
-
 # 店铺加购有礼
 15 12 * * * node /scripts/monk_shop_add_to_car.js >> /scripts/logs/monk_shop_add_to_car.log 2>&1
 
