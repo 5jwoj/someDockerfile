@@ -62,3 +62,5 @@ sed -i "s/https:\/\/raw.githubusercontent.com\/LXK9301\/updateTeam\/master\/jd_u
 ## 京东赚赚
 sed -i "s/http:\/\/qr6pzoy01.hn-bkt.clouddn.com\/jd_zz.json/https:\/\/raw.githubusercontent.com\/Aaron-lv\/updateTeam\/master\/shareCodes\/jd_zz.json/g" /scripts/jd_jdzz.js
 sed -i "s/https:\/\/raw.githubusercontent.com\/gitupdate\/updateTeam\/master\/shareCodes\/jd_zz.json/https:\/\/raw.githubusercontent.com\/Aaron-lv\/updateTeam\/master\/shareCodes\/jd_zz.json/g" /scripts/jd_jdzz.js
+## 美丽研究院
+sed -i "s/Mozilla\/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit\/605.1.15 (KHTML, like Gecko) Version\/14.0.3 Mobile\/15E148 Safari\/604.1/jdapp;iPhone;9.4.8;14.5;21e3e4be5bda669612c3ca00130f6e8e5a6e2653;network\/wifi;supportApplePay\/0;hasUPPay\/0;hasOCPay\/0;model\/iPhone12,3;addressid\/766018041;supportBestPay\/0;appBuild\/167629;jdSupportDarkMode\/0;Mozilla\/5.0 (iPhone; CPU iPhone OS 14_5 like Mac OS X) AppleWebKit\/605.1.15 (KHTML, like Gecko) Mobile\/15E148;supportJDSHWK\/1/g" /scripts/jd_beauty.js
