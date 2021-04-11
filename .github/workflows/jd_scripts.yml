@@ -36,6 +36,6 @@ jobs:
           file: ./jd_scripts/Dockerfile
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: true
-          build-args: ${{ secrets.SSH_PRIVATE_KEY }}
+          build-args: SSH_PRIVATE_KEY=${{ secrets.SSH_PRIVATE_KEY }}
           tags: |
             aaron2397/jd_scripts:latest
